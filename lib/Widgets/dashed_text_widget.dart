@@ -1,5 +1,7 @@
+import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// Class that text in between dashed lines
 /// @author Manish Poudel
@@ -15,6 +17,7 @@ class DashedTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppConfig appConfig = Provider.of<AppConfig>(context);
     return Row(children: <Widget>[
       Expanded(
         child: new Container(
@@ -24,7 +27,7 @@ class DashedTextWidget extends StatelessWidget {
               height: lineHeight,
             )),
       ),
-      Text(text,style: TextStyle(color:Colors.grey, fontFamily: 'Montserrat', fontSize: ScreenUtility.getStandardSize8(context) * 2)),
+      Text(text,style: TextStyle(color:Colors.grey, fontFamily: appConfig.fontFamily, fontSize: ScreenUtility.getStandardSize8(context) * 2)),
       Expanded(
         child: new Container(
             margin: const EdgeInsets.only(left: 15.0, right: 12),
