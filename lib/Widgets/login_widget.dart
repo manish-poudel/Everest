@@ -1,32 +1,32 @@
 import 'package:everest/Utilities/ScreenUtility.dart';
-import 'package:everest/Widgets/custom_textbox.dart';
+import 'package:everest/Widgets/simple_textbox.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_buttons.dart';
+import 'rounded_flat_buttons.dart';
 
 /// Class that provides login widget
 /// @author Manish Poudel
 /// @createdAt 9/24/2020
 
-class CustomLoginWidget extends StatefulWidget {
+class LoginWidget extends StatefulWidget {
 
   final Function onLogin;
   final Function onPasswordForgot;
 
-  CustomLoginWidget({@required this.onLogin, @required this.onPasswordForgot});
+  LoginWidget({@required this.onLogin, @required this.onPasswordForgot});
 
   @override
-  _CustomLoginWidgetState createState() => _CustomLoginWidgetState();
+  _LoginWidgetState createState() => _LoginWidgetState();
 }
 
-class _CustomLoginWidgetState extends State<CustomLoginWidget> {
+class _LoginWidgetState extends State<LoginWidget> {
 
    bool obscurePassword = true;
   @override
   Widget build(BuildContext context) {
     double standardPadding = ScreenUtility.getStandardPadding(context);
-    CustomTextBoxWidget emailTextBox = CustomTextBoxWidget(obscureText: false, hintText: "Email");
-    CustomTextBoxWidget passwordTextBox = CustomTextBoxWidget(obscureText: obscurePassword, hintText: "Password",
+    SimpleTextBoxWidget emailTextBox = SimpleTextBoxWidget(obscureText: false, hintText: "Email");
+    SimpleTextBoxWidget passwordTextBox = SimpleTextBoxWidget(obscureText: obscurePassword, hintText: "Password",
         suffixIcon: IconButton(icon: obscurePassword?Icon(Icons.visibility_off, color: Colors.grey):Icon(Icons.visibility, color: Colors.grey), onPressed: (){
           setState(() {
             obscurePassword = !obscurePassword;
@@ -59,7 +59,7 @@ class _CustomLoginWidgetState extends State<CustomLoginWidget> {
 
         Padding(
           padding:EdgeInsets.only(left: standardPadding, right:standardPadding),
-          child: CustomRoundedButton(
+          child: RoundedFlatButton(
             onClick: widget.onLogin,
             width: ScreenUtility.getScreenWidth(context),
             text: "Login",
