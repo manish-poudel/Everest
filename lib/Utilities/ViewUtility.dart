@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 
 class ViewUtility {
   ///Navigate to a page using default page route
-  static void navigateToPage(BuildContext context, Widget page) {
+  static void push(BuildContext context, Widget page) {
     Navigator.push(context, CupertinoPageRoute(builder: (context) => page));
+  }
+
+  ///Navigate to a page using default page route
+  static void pushReplacement(BuildContext context, Widget page) {
+    Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => page));
   }
 }

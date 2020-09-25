@@ -36,37 +36,32 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text("Sign in",style: TextStyle(fontSize: ScreenUtility.getStandardSize8(context) * 3, fontFamily: 'Montserrat',  fontWeight: FontWeight.w600),),
         Padding(
-          padding: EdgeInsets.only(left:standardPadding, right: standardPadding),
-          child:  Text("Sign in",style: TextStyle(fontSize: ScreenUtility.getStandardSize8(context) * 3, fontFamily: 'Montserrat',  fontWeight: FontWeight.w600),),
-        ),
-        Padding(
-          padding:  EdgeInsets.only(top:standardPadding * 2, left: standardPadding, right: standardPadding),
+          padding:  EdgeInsets.only(top:standardPadding * 2),
           child: emailTextBox,
         ),
         Padding(
-          padding:  EdgeInsets.only(top:standardPadding, left: standardPadding, right: standardPadding),
+          padding:  EdgeInsets.only(top:standardPadding),
           child: passwordTextBox,
         ),
 
         Padding(
-          padding: EdgeInsets.only(top:standardPadding * 2, bottom: standardPadding * 2),
+          padding: EdgeInsets.only(top:standardPadding, bottom: standardPadding * 2.5),
           child: FlatButton(
+            padding: EdgeInsets.all(0),
             onPressed: () => Function.apply(widget.onPasswordForgot, []),
             child: Text("Forgot password?", style: TextStyle(color: Colors.grey, fontSize: ScreenUtility.getStandardSize8(context) * 2, fontFamily: 'Montserrat')),
           ),
         ),
 
-        Padding(
-          padding:EdgeInsets.only(left: standardPadding, right:standardPadding),
-          child: RoundedFlatButton(
-            onClick: widget.onLogin,
-            width: ScreenUtility.getScreenWidth(context),
-            text: "Login",
-            textColor: Colors.white,
-            backgroundColor: Colors.blue,
-            borderColor: Colors.blue,
-          ),
+        RoundedFlatButton(
+          onClick: widget.onLogin,
+          width: ScreenUtility.getScreenWidth(context),
+          text: "Login",
+          textColor: Colors.white,
+          backgroundColor: Colors.blue,
+          borderColor: Colors.blue,
         ),
       ],
     );

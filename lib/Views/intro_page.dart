@@ -6,6 +6,8 @@ import 'package:everest/Resources/custom_icons.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:everest/Utilities/ViewUtility.dart';
 import 'package:everest/Views/login_page.dart';
+import 'package:everest/Views/registration_page.dart';
+import 'package:everest/Widgets/app_logo.dart';
 import 'package:everest/Widgets/rounded_flat_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,9 +29,6 @@ class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
-    /// Height and width of app logo
-    double appLogoHeight = ScreenUtility.getScreenHeight(context) * 0.08;
-    double appLogoWidth = ScreenUtility.getScreenWidth(context) * 0.2;
     /// Height and width of illustrative image
     _illustrativeImgHeight = ScreenUtility.getScreenHeight(context) * 0.37;
     _illustrativeImgWidth = ScreenUtility.getScreenWidth(context);
@@ -43,17 +42,14 @@ class _IntroPageState extends State<IntroPage> {
       theme: AppTheme.light(context),
       home: Scaffold(
         body: Container(
+          height: ScreenUtility.getScreenHeight(context),
+          color: Colors.white70,
           padding: EdgeInsets.only(left: _standardPadding, right:_standardPadding, top: ScreenUtility.getStatusBarHeight(context) * 1.5),
           width: ScreenUtility.getScreenWidth(context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image(
-                image: AssetImage(ImageResources.appLogoPath),
-                height: appLogoHeight,
-                width: appLogoWidth,
-                fit: BoxFit.fitHeight,
-              ),
+            AppLogo(),
             Padding(
               padding: EdgeInsets.only(top: _standardPadding * 2),
               child: _illustrativeImgWithCaption(),
@@ -131,7 +127,7 @@ class _IntroPageState extends State<IntroPage> {
           Padding(
             padding:EdgeInsets.only(top:_standardPadding, bottom: _standardPadding),
             child: RoundedFlatButton(
-              onClick: _onJoinNowBtnPressed,
+              onClick: _onJoinNowWithGoogleBtnPressed,
               width: ScreenUtility.getScreenWidth(context),
               text: "Join with google",
               textColor: Colors.black54,
@@ -155,12 +151,18 @@ class _IntroPageState extends State<IntroPage> {
 
   /// Call back function handler when join now button is pressed
   _onJoinNowBtnPressed() {
-    print("Pressed");
+    ViewUtility.push(context, RegistrationPage());
+  }
+
+  /// If joined with google
+  _onJoinNowWithGoogleBtnPressed()
+  {
+
   }
 
   /// Call back function handler when login in button is pressed
   _onLoginButtonPressed()
   {
-    ViewUtility.navigateToPage(context, LoginPage());
+    ViewUtility.push(context, LoginPage());
   }
 }
