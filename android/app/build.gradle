@@ -47,8 +47,25 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            dimension "default"
+        }
+        prod {
+            dimension "default"
+        }
+    }
 }
 
 flutter {
     source '../..'
+}
+
+// Add this line
+apply plugin: 'com.google.gms.google-services'
+
+dependencies {
+
 }

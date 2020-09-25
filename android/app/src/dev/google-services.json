@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "992750875163",
+    "firebase_url": "https://statusq-development.firebaseio.com",
+    "project_id": "statusq-development",
+    "storage_bucket": "statusq-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992750875163:android:5cd0a98da4c2bec2bc3ebe",
+        "android_client_info": {
+          "package_name": "com.omekus.everest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992750875163-mthfinhlbcegke8to10m83l9502n8c3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0RefZRWNgv46qfvs1uM0j-twrlsPbQt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992750875163-mthfinhlbcegke8to10m83l9502n8c3h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
