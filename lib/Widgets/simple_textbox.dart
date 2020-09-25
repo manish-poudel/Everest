@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 /// @author Manish Poudel
 /// @createdAt 9/24/2020
 
-class CustomTextBoxWidget extends StatelessWidget {
+class SimpleTextBoxWidget extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
   final String hintText;
   final bool obscureText;
@@ -19,7 +19,7 @@ class CustomTextBoxWidget extends StatelessWidget {
     return _textEditingController.text;
   }
 
-  CustomTextBoxWidget({@required this.hintText, @required this.obscureText, this.suffixIcon});
+  SimpleTextBoxWidget({@required this.hintText, @required this.obscureText, this.suffixIcon});
 
   @override
   Widget build(BuildContext context) {

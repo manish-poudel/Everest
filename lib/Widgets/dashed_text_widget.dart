@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 /// @author Manish Poudel
 /// @createdAt 9/24/2020
 
-class CustomDashedTextWidget extends StatelessWidget {
+class DashedTextWidget extends StatelessWidget {
 
   final String text;
   final double lineHeight;
   final double lineWidth;
 
-  CustomDashedTextWidget({@required this.text, @required this.lineHeight, @required this.lineWidth});
+  DashedTextWidget({@required this.text, @required this.lineHeight, @required this.lineWidth});
 
   @override
   Widget build(BuildContext context) {
