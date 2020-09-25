@@ -1,5 +1,4 @@
 import 'package:everest/AppConfig/Flavor.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 /// Class to hold app major configurations
