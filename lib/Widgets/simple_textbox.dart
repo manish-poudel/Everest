@@ -1,7 +1,9 @@
+import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Resources/app_theme.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// Class that provides textbox
 /// @author Manish Poudel
@@ -23,6 +25,7 @@ class SimpleTextBoxWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppConfig appConfig = Provider.of<AppConfig>(context);
     return Theme(
       data: new ThemeData(
         primaryColor: LightThemeColor.primaryColor,
@@ -30,7 +33,7 @@ class SimpleTextBoxWidget extends StatelessWidget {
       ),
       child: TextField(
 
-        style: TextStyle(color: Colors.grey, fontSize: ScreenUtility.getStandardSize8(context) * 2, fontFamily: 'Montserrat'),
+        style: TextStyle(color: Colors.grey, fontSize: ScreenUtility.getStandardSize8(context) * 2, fontFamily: appConfig.fontFamily),
         obscureText: obscureText,
         controller: _textEditingController,
         decoration: new InputDecoration(

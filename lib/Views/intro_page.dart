@@ -1,3 +1,4 @@
+import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Resources/app_image_resources.dart';
 import 'package:everest/Resources/app_string_resources.dart';
 import 'package:everest/Resources/app_theme.dart';
@@ -7,6 +8,7 @@ import 'package:everest/Utilities/ViewUtility.dart';
 import 'package:everest/Views/login_page.dart';
 import 'package:everest/Widgets/rounded_flat_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// First time intro page of the app. Allows user to see what app is all about with sign in and sign up options.
 /// @author Manish Poudel
@@ -20,6 +22,7 @@ class _IntroPageState extends State<IntroPage> {
   double _illustrativeImgHeight;
   double _illustrativeImgWidth;
   double _standardPadding;
+  AppConfig _appConfig;
 
 
   @override
@@ -32,13 +35,15 @@ class _IntroPageState extends State<IntroPage> {
     _illustrativeImgWidth = ScreenUtility.getScreenWidth(context);
 
     _standardPadding = ScreenUtility.getStandardPadding(context);
+    _appConfig = Provider.of<AppConfig>(context, listen: false);
+
     AppTheme.setStatusBarLightTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(context),
       home: Scaffold(
         body: Container(
-          padding: EdgeInsets.only(left: _standardPadding, right:_standardPadding, top: ScreenUtility.getStatusBarHeight(context)),
+          padding: EdgeInsets.only(left: _standardPadding, right:_standardPadding, top: ScreenUtility.getStatusBarHeight(context) * 1.5),
           width: ScreenUtility.getScreenWidth(context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,13 +98,13 @@ class _IntroPageState extends State<IntroPage> {
         Text(heading,
             style: TextStyle(
                 fontSize: ScreenUtility.getStandardSize8(context) * 2,
-                fontFamily: 'Montserrat',
+                fontFamily: _appConfig.fontFamily,
                 fontWeight: FontWeight.w500)),
         Text(subtitle,
             style: TextStyle(
                 fontSize:
                 ScreenUtility.getStandardSize8(context) * 1.5,
-                fontFamily: 'Montserrat',
+                fontFamily: _appConfig.fontFamily,
                 fontWeight: FontWeight.w300)),
       ],
     );

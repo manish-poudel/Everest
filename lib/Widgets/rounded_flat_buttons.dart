@@ -1,6 +1,8 @@
+import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// Class that provides button
 /// @author Manish Poudel
@@ -24,6 +26,7 @@ class RoundedFlatButton extends StatelessWidget {
       this.icon});
   @override
   Widget build(BuildContext context) {
+    AppConfig appConfig = Provider.of<AppConfig>(context);
     return FlatButton(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       onPressed: () => Function.apply(onClick, []),
@@ -34,12 +37,12 @@ class RoundedFlatButton extends StatelessWidget {
           side: BorderSide(color: borderColor)),
       child: icon == null
           ?Padding(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.all(ScreenUtility.getStandardPadding(context)),
           child:Center(
             child: Text(text,
                 style: TextStyle(
                     fontSize: ScreenUtility.getStandardSize8(context) * 2,
-                    fontFamily: 'Montserrat',
+                    fontFamily: appConfig.fontFamily,
                     color: textColor)),
           ))
           : Row(
@@ -53,7 +56,7 @@ class RoundedFlatButton extends StatelessWidget {
                         style: TextStyle(
                             fontSize:
                                 ScreenUtility.getStandardSize8(context) * 2,
-                            fontFamily: 'Montserrat',
+                            fontFamily: appConfig.fontFamily,
                             color: textColor)),
                   ),
                 )
