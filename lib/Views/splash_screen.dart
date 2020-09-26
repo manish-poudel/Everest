@@ -15,7 +15,6 @@ class SplashScreen extends StatelessWidget {
   /// Get profile of the user
   _getProfile(context)
   async {
-    User _user = Provider.of<User>(context, listen: false);
     FirestoreService  firestoreService = Provider.of<FirestoreService>(context);
     Map<String, dynamic> profileMap = await firestoreService.getProfileMap();
     if(profileMap == null)
@@ -23,6 +22,7 @@ class SplashScreen extends StatelessWidget {
       ViewUtility.pushReplacement(parentContext, ProfileEntryPage());
     }
     else{
+      User _user = Provider.of<User>(context, listen: false);
        _user.updateUserFromMap(profileMap);
        ViewUtility.pushReplacement(parentContext, Dashboard());
     }

@@ -115,22 +115,22 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     icon: Icon(CustomIcons.google, color: Colors.blue),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: _standardPadding * 3),
-                  child: Center(
-                    child: FlatButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text(
-                        "Back",
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize:
-                            ScreenUtility.getStandardSize8(context) * 2,
-                            fontFamily: 'Montserrat'),
-                      ),
-                    ),
-                  ),
-                )
+                // Padding(
+                //   padding: EdgeInsets.only(top: _standardPadding * 3),
+                //   child: Center(
+                //     child: FlatButton(
+                //       onPressed: () => Navigator.of(context).pop(),
+                //       child: Text(
+                //         "Back",
+                //         style: TextStyle(
+                //             color: Colors.grey,
+                //             fontSize:
+                //             ScreenUtility.getStandardSize8(context) * 2,
+                //             fontFamily: 'Montserrat'),
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             )
           ),

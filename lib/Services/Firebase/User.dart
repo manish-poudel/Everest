@@ -10,21 +10,39 @@ class User{
   String emailId;
   String firstName;
   String lastName;
+  String gender;
 
-  User({@required this.id ,@required this.emailId, this.firstName, this.lastName});
+  User({@required this.id ,@required this.emailId, this.firstName, this.lastName , this.gender});
 
   /// Create user object from map
   User.fromMap(Map<String, dynamic> map)
   {
+    id = map["id"];
+    emailId = map["emailId"];
     firstName = map["firstName"];
     lastName = map["lastName"];
+    gender = map["gender"];
   }
 
   /// Update user from map
   updateUserFromMap(Map<String, dynamic> map)
   {
+    id = map["id"];
+    emailId = map["emailId"];
     firstName = map["firstName"];
     lastName = map["lastName"];
+    gender = map["gender"];
+  }
+
+
+  Map<String, dynamic> toMap(){
+    var map = new Map<String, dynamic>();
+    map["id"] = id;
+    map["emailId"] = emailId;
+    map["firstName"] = firstName;
+    map["lastName"] = lastName;
+    map["gender"] = gender;
+    return map;
   }
 }
 

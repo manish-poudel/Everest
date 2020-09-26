@@ -123,22 +123,15 @@ class _LoginPageState extends State<LoginPage> {
                     icon: Icon(CustomIcons.google, color: Colors.blue),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: standardPadding * 3),
-                  child: Center(
-                    child: FlatButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text(
-                        "Back",
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize:
-                                ScreenUtility.getStandardSize8(context) * 2,
-                            fontFamily: _loginPageModel.appConfig.fontFamily),
-                      ),
-                    ),
-                  ),
-                )
+                // Padding(
+                //   padding: EdgeInsets.only(top: standardPadding * 3),
+                //   child: Center(
+                //     child: IconButton(
+                //       onPressed: () => Navigator.of(context).pop(),
+                //       icon: Icon(Icons.arrow_back, color: Colors.grey,),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),
