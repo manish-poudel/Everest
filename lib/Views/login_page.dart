@@ -1,7 +1,6 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+
 import 'package:everest/Resources/app_theme.dart';
 import 'package:everest/Resources/custom_icons.dart';
-import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:everest/Utilities/ViewUtility.dart';
 import 'package:everest/Views/Models/login_page_model.dart';
@@ -49,9 +48,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   /// On password forgot button clicked
-  _onPasswordForgot() {
-
-  }
+  _onPasswordForgot() {}
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +57,10 @@ class _LoginPageState extends State<LoginPage> {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(context),
       home: Scaffold(
+        backgroundColor: Colors.white,
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Container(
-            height: ScreenUtility.getScreenHeight(context),
-            color: Colors.white70,
             padding: EdgeInsets.only(
                 left: standardPadding,
                 right: standardPadding,

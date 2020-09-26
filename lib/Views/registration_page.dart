@@ -54,11 +54,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(context),
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
-              height: ScreenUtility.getScreenHeight(context),
            width: ScreenUtility.getScreenWidth(context),
-            color: Colors.white70,
             padding:
             EdgeInsets.only(left: _standardPadding, right: _standardPadding, top:ScreenUtility.getStatusBarHeight(context) * 1.5),
             child: Column(

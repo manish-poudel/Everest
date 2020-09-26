@@ -35,6 +35,7 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.omekus.everest"
         minSdkVersion 16
+        multiDexEnabled true
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -67,5 +68,5 @@ flutter {
 apply plugin: 'com.google.gms.google-services'
 
 dependencies {
-
+    implementation 'com.android.support:multidex:1.0.3'
 }

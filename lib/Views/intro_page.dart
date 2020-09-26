@@ -41,10 +41,10 @@ class _IntroPageState extends State<IntroPage> {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(context),
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
             height: ScreenUtility.getScreenHeight(context),
-            color: Colors.white70,
             padding: EdgeInsets.only(left: _standardPadding, right:_standardPadding, top: ScreenUtility.getStatusBarHeight(context) * 1.5),
             width: ScreenUtility.getScreenWidth(context),
             child: Column(
