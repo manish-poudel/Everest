@@ -6,6 +6,7 @@ import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:everest/Utilities/ViewUtility.dart';
 import 'package:everest/Views/Models/login_page_model.dart';
 import 'package:everest/Views/registration_page.dart';
+import 'package:everest/Widgets/alert_dialogbox.dart';
 import 'package:everest/Widgets/app_logo.dart';
 import 'package:everest/Widgets/rounded_flat_buttons.dart';
 import 'package:everest/Widgets/dashed_text_widget.dart';
@@ -44,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
   _handleLoginError(String errorCode)
   {
     String errorMsg = _loginPageModel.getReadableLoginErrMsg(errorCode);
-    print(errorMsg);
+    DialogBox(context: context, heading: "Login failure", content: errorMsg).show();
   }
 
   /// On password forgot button clicked
@@ -119,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: RoundedFlatButton(
                     onClick: null,
                     width: ScreenUtility.getScreenWidth(context),
-                    text: "Login with google",
+                    text: "Sign in with google",
                     textColor: Colors.black54,
                     backgroundColor: Colors.white,
                     borderColor: Colors.black54,

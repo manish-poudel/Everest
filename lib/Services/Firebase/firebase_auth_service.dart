@@ -32,6 +32,15 @@ class FirebaseAuthService {
     return _userFromFirebase(authResult.user);
   }
 
+  /// Register user with email and Password
+  /// @return User stream
+  /// @param email and password
+  Future<app_user.User> registerWithEmailAndPassword(String email, String password)
+  async {
+    final authResult = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+    return _userFromFirebase(authResult.user);
+  }
+
   /// Sign out user
   /// @return future void value
   Future<void> signOut() async {
