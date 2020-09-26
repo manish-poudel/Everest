@@ -1,5 +1,4 @@
 import 'package:everest/Utilities/ScreenUtility.dart';
-import 'package:everest/Views/Models/registration_page_model.dart';
 import 'package:everest/Widgets/Models/simple_textbox_model.dart';
 import 'package:everest/Widgets/rounded_flat_buttons.dart';
 import 'package:everest/Widgets/simple_textbox.dart';
@@ -15,12 +14,10 @@ class RegistrationWidget extends StatefulWidget {
   final Function onRegister;
   final String Function(String) emailValidator;
   final String Function(String, String) passwordValidator;
+  final String Function(String) nameValidator;
 
-  RegistrationWidget({@required this.onRegister, this.emailValidator, this.passwordValidator});
-
-  static SimpleTextBoxModel _emailTextBoxModel;
-  static SimpleTextBoxModel _passwordTextBoxModel;
-  static SimpleTextBoxModel _passwordAgainTextBoxModel;
+  RegistrationWidget({@required this.onRegister, this.emailValidator, this.passwordValidator, @required this.nameValidator});
+  
 
   @override
   _RegistrationWidgetState createState() => _RegistrationWidgetState();
@@ -30,47 +27,50 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
   final _formKey = GlobalKey<FormState>();
   bool _agreement = false;
 
+   SimpleTextBoxModel _emailTextBoxModel;
+   SimpleTextBoxModel _passwordTextBoxModel;
+   SimpleTextBoxModel _passwordAgainTextBoxModel;
+  
   @override
   void initState() {
     super.initState();
-
     _initializeTextBoxes();
   }
 
   /// Initialize all text boxes
   _initializeTextBoxes()
   {
-    RegistrationWidget._emailTextBoxModel = SimpleTextBoxModel(
+    _emailTextBoxModel = SimpleTextBoxModel(
         hintText: "Email",
         validator: widget.emailValidator);
 
-    RegistrationWidget._passwordTextBoxModel = SimpleTextBoxModel(
+    _passwordTextBoxModel = SimpleTextBoxModel(
         obscureText: true,
         hintText: "Password",
-        validator: widget.passwordValidator == null?null:(value) => widget.passwordValidator(value, RegistrationWidget._passwordAgainTextBoxModel.textEditingController.text),
+        validator: widget.passwordValidator == null?null:(value) => widget.passwordValidator(value, _passwordAgainTextBoxModel.textEditingController.text),
         suffixIcon: Icons.visibility_off,
         onSuffixIconButtonPressed: _onPasswordTextBoxSuffixIconButtonClicked);
 
-    RegistrationWidget._passwordAgainTextBoxModel = SimpleTextBoxModel(
+    _passwordAgainTextBoxModel = SimpleTextBoxModel(
         obscureText: true,
         hintText: "Password Again",
-        validator:widget.passwordValidator == null?null:(value) => widget.passwordValidator(value,RegistrationWidget._passwordTextBoxModel.textEditingController.text),
+        validator:widget.passwordValidator == null?null:(value) => widget.passwordValidator(value,_passwordTextBoxModel.textEditingController.text),
         suffixIcon: Icons.visibility_off,
         onSuffixIconButtonPressed: _onPasswordAgainTextBoxSuffixIconButtonClicked);
   }
 
   /// On password text box suffix icon button clicked
   void _onPasswordTextBoxSuffixIconButtonClicked() {
-    RegistrationWidget._passwordTextBoxModel.obscureText = !RegistrationWidget._passwordTextBoxModel.obscureText;
-    RegistrationWidget._passwordTextBoxModel.suffixIcon = RegistrationWidget._passwordTextBoxModel.obscureText
+    _passwordTextBoxModel.obscureText = !_passwordTextBoxModel.obscureText;
+    _passwordTextBoxModel.suffixIcon = _passwordTextBoxModel.obscureText
         ? Icons.visibility_off
         : Icons.visibility;
   }
 
   /// On password text box suffix icon button clicked
   void _onPasswordAgainTextBoxSuffixIconButtonClicked() {
-    RegistrationWidget._passwordAgainTextBoxModel.obscureText = !RegistrationWidget._passwordAgainTextBoxModel.obscureText;
-    RegistrationWidget._passwordAgainTextBoxModel.suffixIcon = RegistrationWidget._passwordAgainTextBoxModel.obscureText
+    _passwordAgainTextBoxModel.obscureText = !_passwordAgainTextBoxModel.obscureText;
+    _passwordAgainTextBoxModel.suffixIcon = _passwordAgainTextBoxModel.obscureText
         ? Icons.visibility_off
         : Icons.visibility;
   }
@@ -91,21 +91,21 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: standardPadding * 2),
+            padding: EdgeInsets.only(top: standardPadding),
             child: ChangeNotifierProvider<SimpleTextBoxModel>(
-                create: (context) => RegistrationWidget._emailTextBoxModel,
+                create: (context) => _emailTextBoxModel,
                 child: SimpleTextBoxWidget()),
           ),
           Padding(
             padding: EdgeInsets.only(top: standardPadding),
             child: ChangeNotifierProvider<SimpleTextBoxModel>(
-                create: (context) => RegistrationWidget._passwordTextBoxModel,
+                create: (context) => _passwordTextBoxModel,
                 child: SimpleTextBoxWidget()),
           ),
           Padding(
             padding: EdgeInsets.only(top: standardPadding),
             child: ChangeNotifierProvider<SimpleTextBoxModel>(
-                create: (context) => RegistrationWidget._passwordAgainTextBoxModel,
+                create: (context) => _passwordAgainTextBoxModel,
                 child: SimpleTextBoxWidget()),
           ),
 
@@ -113,7 +113,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
             padding:  EdgeInsets.only(top:standardPadding),
             child: CheckboxListTile(
               contentPadding: EdgeInsets.all(0),
-              title: Text("By signing in, you agree to our terms and condition",
+              title: Text("By signing up, you agree to our terms and conditions",
                 style: TextStyle(fontFamily: 'Montserrat',
                     fontSize: ScreenUtility.getStandardSize8(context)* 1.6),),
               value: _agreement,
@@ -133,8 +133,9 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
               onClick: () {
                 if (_formKey.currentState.validate()) {
                   Function.apply(widget.onRegister,
-                      [RegistrationWidget._emailTextBoxModel.textEditingController.text.trim(),
-                        RegistrationWidget._passwordTextBoxModel.textEditingController.text.trim()]);
+                      [_emailTextBoxModel.textEditingController.text.trim(),
+                        _passwordTextBoxModel.textEditingController.text.trim(),
+                      ]);
                 }
               },
               width: ScreenUtility.getScreenWidth(context),

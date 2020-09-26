@@ -1,4 +1,5 @@
 import 'package:everest/Services/Firebase/User.dart';
+import 'package:everest/Views/SplashScreen.dart';
 import 'package:everest/Views/dashboard.dart';
 import 'package:everest/Views/intro_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,7 +15,7 @@ class AuthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (userSnapshot.connectionState == ConnectionState.active) {
-      return userSnapshot.hasData ? Dashboard() : IntroPage();
+      return userSnapshot.hasData ? SplashScreen(context) : IntroPage();
     }
     return Scaffold(
       body: Center(

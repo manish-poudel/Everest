@@ -1,3 +1,4 @@
+import 'package:everest/Services/Firebase/User.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,12 +27,12 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-
+    var user = Provider.of<User>(context, listen: false);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(child: Container(child: FlatButton(
-          child: Text("Logout"),
+          child: Text("Logout "+  user.firstName),
           onPressed: signOut
         ))),
       ),
