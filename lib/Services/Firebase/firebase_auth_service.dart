@@ -14,7 +14,7 @@ class FirebaseAuthService {
   /// @return User of app
   app_user.User _userFromFirebase(firebase_auth.User user)
   {
-    return user.uid != null ? app_user.User(id:  user.uid):null;
+    return user.uid != null ? app_user.User(id:  user.uid, emailId: user.email):null;
   }
 
   /// Listen for the change in auth state

@@ -1,5 +1,5 @@
 import 'package:everest/Services/Firebase/User.dart';
-import 'package:everest/Views/SplashScreen.dart';
+import 'package:everest/Views/splash_screen.dart';
 import 'package:everest/Views/dashboard.dart';
 import 'package:everest/Views/intro_page.dart';
 import 'package:flutter/cupertino.dart';

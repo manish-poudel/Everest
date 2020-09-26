@@ -10,10 +10,11 @@ import 'package:provider/provider.dart';
 /// @createdAt 9/26/2020
 class ProfileEntryWidget extends StatefulWidget {
 
-  final String Function(String) nameValidator;
+  final String Function(String) firstNameValidator;
+  final String Function(String) lastNameValidator;
   final Function onProfileSave;
 
-  ProfileEntryWidget({@required this.nameValidator, @required this.onProfileSave});
+  ProfileEntryWidget({@required this.firstNameValidator, @required this.lastNameValidator, @required this.onProfileSave});
 
   @override
   _ProfileEntryWidgetState createState() => _ProfileEntryWidgetState();
@@ -23,6 +24,7 @@ class _ProfileEntryWidgetState extends State<ProfileEntryWidget> {
   final _formKey = GlobalKey<FormState>();
   SimpleTextBoxModel _firstNameTextBoxModel;
   SimpleTextBoxModel _lastNameTextBoxModel;
+  String _genderSelect = "Male";
 
   @override
   void initState() {
@@ -30,10 +32,10 @@ class _ProfileEntryWidgetState extends State<ProfileEntryWidget> {
     super.initState();
     _firstNameTextBoxModel = SimpleTextBoxModel(
         hintText: "First name",
-        validator: widget.nameValidator);
+        validator: widget.firstNameValidator);
     _lastNameTextBoxModel = SimpleTextBoxModel(
         hintText: "Last name",
-        validator: widget.nameValidator);
+        validator: widget.lastNameValidator);
   }
 
   @override
@@ -70,13 +72,38 @@ class _ProfileEntryWidgetState extends State<ProfileEntryWidget> {
                   child: SimpleTextBoxWidget()),
             ),
             Padding(
-              padding:  EdgeInsets.only(top:standardPadding * 2),
+              padding: EdgeInsets.only(top:standardPadding * 2),
+              child: Container(
+                width: ScreenUtility.getScreenWidth(context),
+                child: DropdownButton<String>(
+                  isExpanded: true,
+                  value: _genderSelect,
+                  items: <String>['Male','Female','Other'].map<DropdownMenuItem<String>>((String value) {
+                    return new DropdownMenuItem<String>(
+                      value: value,
+                      child: Padding(
+                        padding: EdgeInsets.only(left:standardPadding),
+                        child: new Text(value, style: TextStyle(fontFamily: 'Montserrat')),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _genderSelect = value;
+                    });
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding:  EdgeInsets.only(top:standardPadding * 3),
               child: RoundedFlatButton(
                 onClick: () {
                   if (_formKey.currentState.validate()) {
                     Function.apply(widget.onProfileSave,
                         [_firstNameTextBoxModel.textEditingController.text.trim(),
                           _lastNameTextBoxModel.textEditingController.text.trim(),
+                          _genderSelect.trim()
                         ]);
                   }
                 },

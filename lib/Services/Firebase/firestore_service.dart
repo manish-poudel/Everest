@@ -14,12 +14,18 @@ class FirestoreService {
   /// Check if profile exists
   Future<Map<String, dynamic>> getProfileMap() async {
     final path = FirestorePath.userProfile(uid);
-    print(path);
     DocumentSnapshot documentSnapshot =
         await FirebaseFirestore.instance.doc(path).get();
     if (!documentSnapshot.exists) {
       return null;
     }
     return documentSnapshot.data();
+  }
+
+  /// Save user
+  Future<void> saveUser(User user)
+  {
+    final path = FirestorePath.userProfile(uid);
+   return FirebaseFirestore.instance.doc(path).set(user.toMap());
   }
 }
