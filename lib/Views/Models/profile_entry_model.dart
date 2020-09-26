@@ -15,10 +15,10 @@ class ProfileEntryModel {
   ProfileEntryModel({@required this.context});
 
   /// Save user profile
-  saveProfile(User user)
+  Future<void> saveProfile(User user)
   {
     FirestoreService  firestoreService = Provider.of<FirestoreService>(context,listen: false);
-    firestoreService.saveUser(user);
+   return  firestoreService.saveUser(user);
   }
 
   /// Validation for first name text field
