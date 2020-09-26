@@ -13,24 +13,16 @@ class SplashScreen extends StatelessWidget {
   SplashScreen(this.parentContext);
 
   /// Get profile of the user
-  _getProfile(context)
+  _checkForProfile(context)
   async {
     FirestoreService  firestoreService = Provider.of<FirestoreService>(context);
-    Map<String, dynamic> profileMap = await firestoreService.getProfileMap();
-    if(profileMap == null)
-    {
-      ViewUtility.pushReplacement(parentContext, ProfileEntryPage());
-    }
-    else{
-      User _user = Provider.of<User>(context, listen: false);
-       _user.updateUserFromMap(profileMap);
-       ViewUtility.pushReplacement(parentContext, Dashboard());
-    }
+    bool profileExists = await firestoreService.checkIfProfileExists();
+    !profileExists? ViewUtility.pushReplacement(parentContext, ProfileEntryPage()): ViewUtility.pushReplacement(parentContext, Dashboard());
   }
 
   @override
   Widget build(BuildContext context) {
-    _getProfile(context);
+    _checkForProfile(context);
     return Scaffold(
       body: Center(
         child: CircularProgressIndicator(),

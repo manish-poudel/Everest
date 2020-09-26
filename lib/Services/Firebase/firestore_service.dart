@@ -12,20 +12,28 @@ class FirestoreService {
   FirestoreService({@required this.uid});
 
   /// Check if profile exists
-  Future<Map<String, dynamic>> getProfileMap() async {
+  Future<bool> checkIfProfileExists() async {
     final path = FirestorePath.userProfile(uid);
     DocumentSnapshot documentSnapshot =
         await FirebaseFirestore.instance.doc(path).get();
-    if (!documentSnapshot.exists) {
-      return null;
-    }
-    return documentSnapshot.data();
+    return documentSnapshot.exists;
   }
 
   /// Save user
+  /// @param User obj
   Future<void> saveUser(User user)
   {
     final path = FirestorePath.userProfile(uid);
    return FirebaseFirestore.instance.doc(path).set(user.toMap());
   }
+
+  /// Get user strema
+  Stream<User> userStream()
+  {
+    final path = FirestorePath.userProfile(uid);
+    final reference = FirebaseFirestore.instance.doc(path);
+    final snapshots = reference.snapshots();
+    return snapshots.map((snapshot) => User.fromMap(snapshot.data()));
+  }
+
 }

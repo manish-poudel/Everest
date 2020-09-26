@@ -2,11 +2,16 @@ import 'package:everest/Resources/app_theme.dart';
 import 'package:everest/Services/Firebase/User.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
+import 'package:everest/Utilities/ViewUtility.dart';
 import 'package:everest/Views/Models/profile_entry_model.dart';
+import 'package:everest/Widgets/alert_dialogbox.dart';
 import 'package:everest/Widgets/app_logo.dart';
 import 'package:everest/Widgets/profile_entry_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'dashboard.dart';
 
 /// Page for profile entry
 ///@author Manish Poudel
@@ -18,30 +23,38 @@ class ProfileEntryPage extends StatefulWidget {
 }
 
 class _ProfileEntryPageState extends State<ProfileEntryPage> {
-
   ProfileEntryModel _profileEntryModel;
-  User _user;
-
+  firebase_auth.User _user;
 
   /// On profile saved call
   /// @param first name, last name, and gender of the user
   _onProfileSave(firstName, lastName, gender) {
-      _user.firstName = firstName;
-      _user.lastName = lastName;
-      _user.gender = gender;
-      _profileEntryModel.saveProfile(_user);
+    User user = User(
+        id: _user.uid,
+        emailId: _user.email,
+        firstName: firstName,
+        lastName: lastName,
+        gender: gender);
+    _profileEntryModel.saveProfile(user).then((value) {
+      ViewUtility.pushReplacement(context, Dashboard());
+    }).catchError((err) {
+      DialogBox(
+              context: context,
+              heading: "Profile setup failure",
+              content: "Something went wrong. Please try again.")
+          .show();
+    });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _profileEntryModel = ProfileEntryModel(context: context);
   }
 
   @override
   Widget build(BuildContext context) {
-    _user = Provider.of<User>(context, listen: false);
+    _user = Provider.of<firebase_auth.User>(context, listen: false);
     var authService = Provider.of<FirebaseAuthService>(context, listen: false);
     final double standardPadding = ScreenUtility.getStandardPadding(context);
     return MaterialApp(
