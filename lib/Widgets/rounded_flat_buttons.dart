@@ -15,6 +15,7 @@ class RoundedFlatButton extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
   final Icon icon;
+  final bool enable;
 
   RoundedFlatButton(
       {@required this.text,
@@ -23,18 +24,20 @@ class RoundedFlatButton extends StatelessWidget {
       @required this.backgroundColor,
       @required this.textColor,
       @required this.borderColor,
+        @required this.enable,
       this.icon});
   @override
   Widget build(BuildContext context) {
     AppConfig appConfig = Provider.of<AppConfig>(context);
     return FlatButton(
+      disabledColor: Colors.grey,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      onPressed: () => Function.apply(onClick, []),
+      onPressed: (enable == null || enable)?() => Function.apply(onClick, []):null,
       color: backgroundColor,
       shape: RoundedRectangleBorder(
           borderRadius:
               BorderRadius.circular(ScreenUtility.getStandardSize8(context)),
-          side: BorderSide(color: borderColor)),
+          side: BorderSide(color: (enable == null || enable)?borderColor:Colors.grey)),
       child: icon == null
           ?Padding(
           padding: EdgeInsets.all(ScreenUtility.getStandardPadding(context)),

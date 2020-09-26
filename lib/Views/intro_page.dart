@@ -41,21 +41,23 @@ class _IntroPageState extends State<IntroPage> {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(context),
       home: Scaffold(
-        body: Container(
-          height: ScreenUtility.getScreenHeight(context),
-          color: Colors.white70,
-          padding: EdgeInsets.only(left: _standardPadding, right:_standardPadding, top: ScreenUtility.getStatusBarHeight(context) * 1.5),
-          width: ScreenUtility.getScreenWidth(context),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            AppLogo(),
-            Padding(
-              padding: EdgeInsets.only(top: _standardPadding * 2),
-              child: _illustrativeImgWithCaption(),
+        body: SingleChildScrollView(
+          child: Container(
+            height: ScreenUtility.getScreenHeight(context),
+            color: Colors.white70,
+            padding: EdgeInsets.only(left: _standardPadding, right:_standardPadding, top: ScreenUtility.getStatusBarHeight(context) * 1.5),
+            width: ScreenUtility.getScreenWidth(context),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              AppLogo(),
+              Padding(
+                padding: EdgeInsets.only(top: _standardPadding * 2),
+                child: _illustrativeImgWithCaption(),
+              ),
+                Expanded(child: _buttonsCollection())
+              ],
             ),
-              Expanded(child: _buttonsCollection())
-            ],
           ),
         ),
       ),
@@ -139,7 +141,7 @@ class _IntroPageState extends State<IntroPage> {
           RoundedFlatButton(
             onClick: _onLoginButtonPressed,
             width: ScreenUtility.getScreenWidth(context),
-            text: "Login",
+            text: "Sign in",
             textColor: Colors.black54,
             backgroundColor: Colors.white,
             borderColor: Colors.black54,

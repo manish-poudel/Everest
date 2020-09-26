@@ -100,7 +100,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               }
             },
             width: ScreenUtility.getScreenWidth(context),
-            text: "Login",
+            text: "Sign in",
             textColor: Colors.white,
             backgroundColor: Colors.blue,
             borderColor: Colors.blue,
