@@ -21,19 +21,16 @@ class FirestoreService {
 
   /// Save user
   /// @param User obj
-  Future<void> saveUser(User user)
-  {
+  Future<void> saveUser(User user) {
     final path = FirestorePath.userProfile(uid);
-   return FirebaseFirestore.instance.doc(path).set(user.toMap());
+    return FirebaseFirestore.instance.doc(path).set(user.toMap());
   }
 
-  /// Get user strema
-  Stream<User> userStream()
-  {
+  /// Get user streAM
+  Stream<User> userStream() {
     final path = FirestorePath.userProfile(uid);
     final reference = FirebaseFirestore.instance.doc(path);
     final snapshots = reference.snapshots();
     return snapshots.map((snapshot) => User.fromMap(snapshot.data()));
   }
-
 }

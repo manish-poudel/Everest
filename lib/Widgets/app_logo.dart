@@ -11,7 +11,7 @@ class AppLogo extends StatelessWidget {
     /// Height and width of app logo
     double appLogoHeight = ScreenUtility.getScreenHeight(context) * 0.08;
     double appLogoWidth = ScreenUtility.getScreenWidth(context) * 0.2;
-    return  Image(
+    return Image(
       image: AssetImage(ImageResources.appLogoPath),
       height: appLogoHeight,
       width: appLogoWidth,

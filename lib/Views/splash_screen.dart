@@ -1,4 +1,3 @@
-import 'package:everest/Services/Firebase/User.dart';
 import 'package:everest/Services/Firebase/firestore_service.dart';
 import 'package:everest/Utilities/ViewUtility.dart';
 import 'package:everest/Views/dashboard.dart';
@@ -17,7 +16,7 @@ class SplashScreen extends StatelessWidget {
   async {
     FirestoreService  firestoreService = Provider.of<FirestoreService>(context);
     bool profileExists = await firestoreService.checkIfProfileExists();
-    !profileExists? ViewUtility.pushReplacement(parentContext, ProfileEntryPage()): ViewUtility.pushReplacement(parentContext, Dashboard());
+    !profileExists? ViewUtility.materialPushReplacement(parentContext, ProfileEntryPage()): ViewUtility.materialPushReplacement(parentContext, Dashboard());
   }
 
   @override

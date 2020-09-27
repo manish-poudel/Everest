@@ -1,5 +1,4 @@
-
-import 'package:everest/Resources/app_theme.dart';
+import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Resources/custom_icons.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:everest/Utilities/ViewUtility.dart';
@@ -11,6 +10,7 @@ import 'package:everest/Widgets/rounded_flat_buttons.dart';
 import 'package:everest/Widgets/dashed_text_widget.dart';
 import 'package:everest/Widgets/login_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// Login view page to handle authentication
 ///@author Manish Poudel
@@ -22,6 +22,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   static LoginPageModel _loginPageModel;
+  AppConfig _appConfig;
+  double _standardPadding;
+
   @override
   void initState() {
     super.initState();
@@ -41,10 +44,10 @@ class _LoginPageState extends State<LoginPage> {
 
   /// Handle login error using error code sent by firebase authentication.
   /// @param error code
-  _handleLoginError(String errorCode)
-  {
+  _handleLoginError(String errorCode) {
     String errorMsg = _loginPageModel.getReadableLoginErrMsg(errorCode);
-    DialogBox(context: context, heading: "Login failure", content: errorMsg).show();
+    DialogBox(context: context, heading: "Login failure", content: errorMsg)
+        .show();
   }
 
   /// On password forgot button clicked
@@ -52,18 +55,19 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final double standardPadding = ScreenUtility.getStandardPadding(context);
+    _appConfig = Provider.of<AppConfig>(context, listen: false);
+    _standardPadding = ScreenUtility.getStandardPadding(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(context),
+      theme: _appConfig.appTheme.getThemeData(context),
       home: Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.only(
-                left: standardPadding,
-                right: standardPadding,
+                left: _standardPadding,
+                right: _standardPadding,
                 top: ScreenUtility.getStatusBarHeight(context) * 1.5),
             width: ScreenUtility.getScreenWidth(context),
             child: Column(
@@ -74,24 +78,24 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     AppLogo(),
                     FlatButton(
-                      onPressed: () => ViewUtility.pushReplacement(
+                      onPressed: () => ViewUtility.cupertinoPushReplacement(
                           context, RegistrationPage()),
                       child: Text(
                         "JOIN NOW",
                         style: TextStyle(
-                            color: LightThemeColor.primaryColor,
+                            color: _appConfig.appTheme.primaryColor,
                             fontSize:
                                 ScreenUtility.getStandardSize8(context) * 2,
-                            fontFamily: _loginPageModel.appConfig.fontFamily),
+                            fontFamily: _appConfig.fontFamily),
                       ),
                     ),
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      left: standardPadding * 2,
-                      right: standardPadding * 2,
-                      top: standardPadding * 3),
+                      left: _standardPadding * 2,
+                      right: _standardPadding * 2,
+                      top: _standardPadding * 3),
                   child: LoginWidget(
                       onLogin: _onSignInWithEmailAndPassword,
                       onPasswordForgot: _onPasswordForgot,
@@ -100,10 +104,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: standardPadding * 1,
-                      bottom: standardPadding * 1,
-                      right: standardPadding,
-                      left: standardPadding),
+                      top: _standardPadding * 1,
+                      bottom: _standardPadding * 1,
+                      right: _standardPadding,
+                      left: _standardPadding),
                   child: DashedTextWidget(
                     lineHeight: 1,
                     lineWidth: 1,
@@ -112,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      left: standardPadding * 2, right: standardPadding * 2),
+                      left: _standardPadding * 2, right: _standardPadding * 2),
                   child: RoundedFlatButton(
                     onClick: null,
                     width: ScreenUtility.getScreenWidth(context),

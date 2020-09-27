@@ -13,7 +13,8 @@ class AuthWidgetBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<FirebaseAuthService>(context, listen: false);
+    final authService =
+        Provider.of<FirebaseAuthService>(context, listen: false);
     return StreamBuilder<User>(
       stream: authService.onAuthStateChanged,
       builder: (context, snapshot) {
@@ -28,6 +29,7 @@ class AuthWidgetBuilder extends StatelessWidget {
             child: builder(context, snapshot),
           );
         }
+        print("No data");
         return builder(context, snapshot);
       },
     );

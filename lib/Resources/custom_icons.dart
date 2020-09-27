@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/Google.ttf
 ///
-/// 
+///
 /// * Font Awesome 4, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL ()
@@ -28,5 +28,6 @@ class CustomIcons {
   static const _kFontFam = 'Google';
   static const _kFontPkg = null;
 
-  static const IconData google = IconData(0xf1a0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData google =
+      IconData(0xf1a0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

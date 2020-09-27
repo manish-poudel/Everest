@@ -1,7 +1,6 @@
 import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Resources/app_image_resources.dart';
 import 'package:everest/Resources/app_string_resources.dart';
-import 'package:everest/Resources/app_theme.dart';
 import 'package:everest/Resources/custom_icons.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:everest/Utilities/ViewUtility.dart';
@@ -26,35 +25,34 @@ class _IntroPageState extends State<IntroPage> {
   double _standardPadding;
   AppConfig _appConfig;
 
-
   @override
   Widget build(BuildContext context) {
-    /// Height and width of illustrative image
+    _appConfig = Provider.of<AppConfig>(context, listen: false);
     _illustrativeImgHeight = ScreenUtility.getScreenHeight(context) * 0.37;
     _illustrativeImgWidth = ScreenUtility.getScreenWidth(context);
-
     _standardPadding = ScreenUtility.getStandardPadding(context);
-    _appConfig = Provider.of<AppConfig>(context, listen: false);
-
-    AppTheme.setStatusBarLightTheme();
+    _appConfig.appTheme.setStatusBarTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(context),
+      theme: _appConfig.appTheme.getThemeData(context),
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
             height: ScreenUtility.getScreenHeight(context),
-            padding: EdgeInsets.only(left: _standardPadding, right:_standardPadding, top: ScreenUtility.getStatusBarHeight(context) * 1.5),
+            padding: EdgeInsets.only(
+                left: _standardPadding,
+                right: _standardPadding,
+                top: ScreenUtility.getStatusBarHeight(context) * 1.5),
             width: ScreenUtility.getScreenWidth(context),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              AppLogo(),
-              Padding(
-                padding: EdgeInsets.only(top: _standardPadding * 2),
-                child: _illustrativeImgWithCaption(),
-              ),
+                AppLogo(),
+                Padding(
+                  padding: EdgeInsets.only(top: _standardPadding * 2),
+                  child: _illustrativeImgWithCaption(),
+                ),
                 Expanded(child: _buttonsCollection())
               ],
             ),
@@ -64,11 +62,9 @@ class _IntroPageState extends State<IntroPage> {
     );
   }
 
-
   /// Widget that display illustrative image with caption
   /// @returns Widget
-  Widget _illustrativeImgWithCaption()
-  {
+  Widget _illustrativeImgWithCaption() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -78,10 +74,13 @@ class _IntroPageState extends State<IntroPage> {
           width: _illustrativeImgWidth,
           fit: BoxFit.fitHeight,
         ),
-        _headingWithSubtitle(StringResources.IntroPageImgCaptionMainOne, StringResources.IntroPageImgCaptionSubOne),
+        _headingWithSubtitle(StringResources.IntroPageImgCaptionMainOne,
+            StringResources.IntroPageImgCaptionSubOne),
         Padding(
-          padding: EdgeInsets.only(top:_standardPadding),
-          child: _headingWithSubtitle(StringResources.IntroPageImgCaptionMainTwo, StringResources.IntroPageImgCaptionSubTwo),
+          padding: EdgeInsets.only(top: _standardPadding),
+          child: _headingWithSubtitle(
+              StringResources.IntroPageImgCaptionMainTwo,
+              StringResources.IntroPageImgCaptionSubTwo),
         ),
       ],
     );
@@ -89,8 +88,7 @@ class _IntroPageState extends State<IntroPage> {
 
   /// Widget with heading and caption text
   /// @returns Widget
-  Widget _headingWithSubtitle(String heading, String subtitle)
-  {
+  Widget _headingWithSubtitle(String heading, String subtitle) {
     return Column(
       children: [
         Text(heading,
@@ -100,8 +98,7 @@ class _IntroPageState extends State<IntroPage> {
                 fontWeight: FontWeight.w500)),
         Text(subtitle,
             style: TextStyle(
-                fontSize:
-                ScreenUtility.getStandardSize8(context) * 1.5,
+                fontSize: ScreenUtility.getStandardSize8(context) * 1.5,
                 fontFamily: _appConfig.fontFamily,
                 fontWeight: FontWeight.w300)),
       ],
@@ -110,8 +107,7 @@ class _IntroPageState extends State<IntroPage> {
 
   /// All the button on the intro page
   /// @returns Widget with list of rounded buttons
-  Widget _buttonsCollection()
-  {
+  Widget _buttonsCollection() {
     return Container(
       padding: EdgeInsets.only(left: _standardPadding, right: _standardPadding),
       child: Column(
@@ -127,7 +123,8 @@ class _IntroPageState extends State<IntroPage> {
             borderColor: Colors.blue,
           ),
           Padding(
-            padding:EdgeInsets.only(top:_standardPadding, bottom: _standardPadding),
+            padding: EdgeInsets.only(
+                top: _standardPadding, bottom: _standardPadding),
             child: RoundedFlatButton(
               onClick: _onJoinNowWithGoogleBtnPressed,
               width: ScreenUtility.getScreenWidth(context),
@@ -153,18 +150,14 @@ class _IntroPageState extends State<IntroPage> {
 
   /// Call back function handler when join now button is pressed
   _onJoinNowBtnPressed() {
-    ViewUtility.push(context, RegistrationPage());
+    ViewUtility.cupertinoPush(context, RegistrationPage());
   }
 
   /// If joined with google
-  _onJoinNowWithGoogleBtnPressed()
-  {
-
-  }
+  _onJoinNowWithGoogleBtnPressed() {}
 
   /// Call back function handler when login in button is pressed
-  _onLoginButtonPressed()
-  {
-    ViewUtility.push(context, LoginPage());
+  _onLoginButtonPressed() {
+    ViewUtility.cupertinoPush(context, LoginPage());
   }
 }

@@ -4,19 +4,22 @@ import 'package:flutter/cupertino.dart';
 /// @author Manish Poudel
 /// @createdAt 9/25/2020
 
-class User{
-
+class User {
   String id;
   String emailId;
   String firstName;
   String lastName;
   String gender;
 
-  User({@required this.id ,@required this.emailId, this.firstName, this.lastName , this.gender});
+  User(
+      {@required this.id,
+      @required this.emailId,
+      this.firstName,
+      this.lastName,
+      this.gender});
 
   /// Create user object from map
-  User.fromMap(Map<String, dynamic> map)
-  {
+  User.fromMap(Map<String, dynamic> map) {
     id = map["id"];
     emailId = map["emailId"];
     firstName = map["firstName"];
@@ -25,8 +28,7 @@ class User{
   }
 
   /// Update user from map
-  updateUserFromMap(Map<String, dynamic> map)
-  {
+  updateUserFromMap(Map<String, dynamic> map) {
     id = map["id"];
     emailId = map["emailId"];
     firstName = map["firstName"];
@@ -34,8 +36,7 @@ class User{
     gender = map["gender"];
   }
 
-
-  Map<String, dynamic> toMap(){
+  Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
     map["id"] = id;
     map["emailId"] = emailId;
@@ -45,5 +46,3 @@ class User{
     return map;
   }
 }
-
-
