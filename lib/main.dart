@@ -2,6 +2,8 @@ import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/AppConfig/Flavor.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'AppTheme/app_theme.dart';
+import 'AppTheme/app_theme_type.dart';
 import 'file:///C:/Users/sharm/Documents/Projects/Omekus/Everest/everest/lib/StatusQApp.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +16,7 @@ Future<void> main() async {
       Provider<AppConfig>(
         create: (_) => AppConfig(
             fontFamily: 'Montserrat',
+            appTheme: AppTheme(type: AppThemeType.light),
             apiBasePath: "",
             flavor: Flavor.prod),
       ),

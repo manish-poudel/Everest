@@ -1,4 +1,4 @@
-import 'package:everest/Resources/app_theme.dart';
+import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Services/Firebase/User.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
@@ -25,6 +25,15 @@ class ProfileEntryPage extends StatefulWidget {
 class _ProfileEntryPageState extends State<ProfileEntryPage> {
   ProfileEntryModel _profileEntryModel;
   firebase_auth.User _user;
+  FirebaseAuthService _authService;
+  double _standardPadding;
+  AppConfig _appConfig;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _profileEntryModel = ProfileEntryModel(context: context);
+  }
 
   /// On profile saved call
   /// @param first name, last name, and gender of the user
@@ -36,7 +45,7 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
         lastName: lastName,
         gender: gender);
     _profileEntryModel.saveProfile(user).then((value) {
-      ViewUtility.pushReplacement(context, Dashboard());
+      ViewUtility.cupertinoPushReplacement(context, Dashboard());
     }).catchError((err) {
       DialogBox(
               context: context,
@@ -47,19 +56,14 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _profileEntryModel = ProfileEntryModel(context: context);
-  }
-
-  @override
   Widget build(BuildContext context) {
     _user = Provider.of<firebase_auth.User>(context, listen: false);
-    var authService = Provider.of<FirebaseAuthService>(context, listen: false);
-    final double standardPadding = ScreenUtility.getStandardPadding(context);
+    _authService = Provider.of<FirebaseAuthService>(context, listen: false);
+    _standardPadding = ScreenUtility.getStandardPadding(context);
+    _appConfig = Provider.of<AppConfig>(context, listen: false);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(context),
+      theme: _appConfig.appTheme.getThemeData(context),
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -67,8 +71,8 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
             width: ScreenUtility.getScreenWidth(context),
             color: Colors.white70,
             padding: EdgeInsets.only(
-                left: standardPadding,
-                right: standardPadding,
+                left: _standardPadding,
+                right: _standardPadding,
                 top: ScreenUtility.getStatusBarHeight(context) * 1.5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,20 +80,20 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
                 AppLogo(),
                 Padding(
                   padding: EdgeInsets.only(
-                      left: standardPadding * 2,
-                      right: standardPadding * 2,
-                      top: standardPadding * 3),
+                      left: _standardPadding * 2,
+                      right: _standardPadding * 2,
+                      top: _standardPadding * 3),
                   child: ProfileEntryWidget(
                       firstNameValidator: _profileEntryModel.firstNameValidator,
                       lastNameValidator: _profileEntryModel.lastNameValidator,
                       onProfileSave: _onProfileSave),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: standardPadding),
+                  padding: EdgeInsets.only(top: _standardPadding),
                   child: FlatButton(
                     child: Text("Sign out"),
                     onPressed: () {
-                      authService.signOut();
+                      _authService.signOut();
                     },
                   ),
                 )

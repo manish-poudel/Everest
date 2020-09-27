@@ -1,4 +1,3 @@
-import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Resources/regex.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:provider/provider.dart';
@@ -8,11 +7,9 @@ import 'package:provider/provider.dart';
 /// @createdAt 9/26/2020
 
 class LoginPageModel {
-  AppConfig appConfig;
   FirebaseAuthService firebaseAuthService;
 
   LoginPageModel(context) {
-    appConfig = Provider.of<AppConfig>(context, listen: false);
     firebaseAuthService = Provider.of<FirebaseAuthService>(context, listen: false);
   }
 

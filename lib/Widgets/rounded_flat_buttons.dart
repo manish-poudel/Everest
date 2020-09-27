@@ -24,7 +24,7 @@ class RoundedFlatButton extends StatelessWidget {
       @required this.backgroundColor,
       @required this.textColor,
       @required this.borderColor,
-        @required this.enable,
+      this.enable,
       this.icon});
   @override
   Widget build(BuildContext context) {
@@ -32,28 +32,32 @@ class RoundedFlatButton extends StatelessWidget {
     return FlatButton(
       disabledColor: Colors.grey,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      onPressed: (enable == null || enable)?() => Function.apply(onClick, []):null,
+      onPressed:
+          (enable == null || enable) ? () => Function.apply(onClick, []) : null,
       color: backgroundColor,
       shape: RoundedRectangleBorder(
           borderRadius:
               BorderRadius.circular(ScreenUtility.getStandardSize8(context)),
-          side: BorderSide(color: (enable == null || enable)?borderColor:Colors.grey)),
+          side: BorderSide(
+              color: (enable == null || enable) ? borderColor : Colors.grey)),
       child: icon == null
-          ?Padding(
-          padding: EdgeInsets.all(ScreenUtility.getStandardPadding(context)),
-          child:Center(
-            child: Text(text,
-                style: TextStyle(
-                    fontSize: ScreenUtility.getStandardSize8(context) * 2,
-                    fontFamily: appConfig.fontFamily,
-                    color: textColor)),
-          ))
+          ? Padding(
+              padding:
+                  EdgeInsets.all(ScreenUtility.getStandardPadding(context)),
+              child: Center(
+                child: Text(text,
+                    style: TextStyle(
+                        fontSize: ScreenUtility.getStandardSize8(context) * 2,
+                        fontFamily: appConfig.fontFamily,
+                        color: textColor)),
+              ))
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 icon,
                 Padding(
-                  padding:  EdgeInsets.all(ScreenUtility.getStandardPadding(context)),
+                  padding:
+                      EdgeInsets.all(ScreenUtility.getStandardPadding(context)),
                   child: Center(
                     child: Text(text,
                         style: TextStyle(

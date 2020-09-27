@@ -1,5 +1,4 @@
 import 'package:everest/AppConfig/AppConfig.dart';
-import 'package:everest/Resources/app_theme.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
 import 'package:everest/Widgets/Models/simple_textbox_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,7 +23,7 @@ class _SimpleTextBoxWidgetState extends State<SimpleTextBoxWidget> {
     AppConfig appConfig = Provider.of<AppConfig>(context, listen: false);
     return Theme(
       data: new ThemeData(
-        primaryColor: LightThemeColor.primaryColor,
+        primaryColor: appConfig.appTheme.primaryColor,
         hintColor: Colors.grey,
       ),
       child: Consumer<SimpleTextBoxModel>(
