@@ -7,6 +7,7 @@ import 'package:everest/Views/login_page.dart';
 import 'package:everest/Widgets/alert_dialogbox.dart';
 import 'package:everest/Widgets/app_logo.dart';
 import 'package:everest/Widgets/dashed_text_widget.dart';
+import 'package:everest/Widgets/progress_info_widget.dart';
 import 'package:everest/Widgets/registration_widget.dart';
 import 'package:everest/Widgets/rounded_flat_buttons.dart';
 import 'package:flutter/material.dart';
@@ -33,10 +34,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   /// On register clicked
   _onRegisterClicked(String email, String password) {
+    ProgressInfo progressInfo = ProgressInfo(context: context, content: "Please wait..");
+    progressInfo.show();
     _registrationPageModel
         .registerWithEmailAndPassword(email, password)
-        .then((value) => null)
+        .then((value) => progressInfo.dismiss())
         .catchError((err) {
+          progressInfo.dismiss();
       _handleLoginError(err.code);
     });
   }

@@ -64,15 +64,19 @@ class _DashboardState extends State<Dashboard> {
       builder: (context, snapshot) {
         final user = snapshot.data;
         if (snapshot.connectionState == ConnectionState.active) {
-          return (Column(
-            children: [
-              Text(user.id),
-              Text(user.firstName),
-              Text(user.lastName),
-              Text(user.emailId),
-              Text(user.gender),
-            ],
-          ));
+          if(user!= null)
+            {
+              return (Column(
+                children: [
+                  Text(user.id),
+                  Text(user.firstName),
+                  Text(user.lastName),
+                  Text(user.emailId),
+                  Text(user.gender),
+                ],
+              ));
+            }
+          return Text("No profile");
         }
         return Text("Getting profile");
       },

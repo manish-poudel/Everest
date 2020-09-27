@@ -7,6 +7,7 @@ import 'package:everest/Views/Models/profile_entry_model.dart';
 import 'package:everest/Widgets/alert_dialogbox.dart';
 import 'package:everest/Widgets/app_logo.dart';
 import 'package:everest/Widgets/profile_entry_widget.dart';
+import 'package:everest/Widgets/progress_info_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +39,8 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
   /// On profile saved call
   /// @param first name, last name, and gender of the user
   _onProfileSave(firstName, lastName, gender) {
+    ProgressInfo progressInfo = ProgressInfo(context: context, content: "Saving your profile...");
+    progressInfo.show();
     User user = User(
         id: _user.uid,
         emailId: _user.email,
@@ -45,8 +48,10 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
         lastName: lastName,
         gender: gender);
     _profileEntryModel.saveProfile(user).then((value) {
+      progressInfo.dismiss();
       ViewUtility.cupertinoPushReplacement(context, Dashboard());
     }).catchError((err) {
+      progressInfo.dismiss();
       DialogBox(
               context: context,
               heading: "Profile setup failure",
@@ -91,7 +96,7 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
                 Padding(
                   padding: EdgeInsets.only(top: _standardPadding),
                   child: FlatButton(
-                    child: Text("Sign out"),
+                    child: Text("Sign out",style: TextStyle(fontFamily: _appConfig.fontFamily, decoration:TextDecoration.underline)),
                     onPressed: () {
                       _authService.signOut();
                     },
