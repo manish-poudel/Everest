@@ -29,7 +29,6 @@ class AuthWidgetBuilder extends StatelessWidget {
             child: builder(context, snapshot),
           );
         }
-        print("No data");
         return builder(context, snapshot);
       },
     );
