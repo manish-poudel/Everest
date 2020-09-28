@@ -87,7 +87,7 @@ class _ProfileEntryWidgetState extends State<ProfileEntryWidget> {
                     child: Padding(
                       padding: EdgeInsets.only(left: _standardPadding),
                       child: new Text(value,
-                          style: TextStyle(fontFamily: _appConfig.fontFamily)),
+                          style: TextStyle(fontFamily: _appConfig.fontFamily, fontSize: ScreenUtility.getStandardSize8(context) * 2)),
                     ),
                   );
                 }).toList(),

@@ -43,6 +43,6 @@ class ProgressInfo{
   /// Dismiss dialog box
   dismiss()
   {
-    Navigator.of(context).pop();
+    Navigator.pop(dbContext);
   }
 }
