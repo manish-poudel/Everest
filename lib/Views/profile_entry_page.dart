@@ -49,7 +49,6 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
         gender: gender);
     _profileEntryModel.saveProfile(user).then((value) {
       progressInfo.dismiss();
-      ViewUtility.cupertinoPushReplacement(context, Dashboard());
     }).catchError((err) {
       progressInfo.dismiss();
       DialogBox(
@@ -96,7 +95,7 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
                 Padding(
                   padding: EdgeInsets.only(top: _standardPadding),
                   child: FlatButton(
-                    child: Text("Sign out",style: TextStyle(fontFamily: _appConfig.fontFamily, decoration:TextDecoration.underline)),
+                    child: Text("Sign out",style: TextStyle(fontFamily: _appConfig.fontFamily,  fontSize: ScreenUtility.getStandardSize8(context) * 2,decoration:TextDecoration.underline)),
                     onPressed: () {
                       _authService.signOut();
                     },

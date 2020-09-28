@@ -15,7 +15,7 @@ class AuthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (userSnapshot.connectionState == ConnectionState.active) {
-      return userSnapshot.hasData ? SplashScreen(context) : IntroPage();
+      return userSnapshot.hasData ? SplashScreen() : IntroPage();
     }
     return Scaffold(
       body: Center(
@@ -24,3 +24,4 @@ class AuthWidget extends StatelessWidget {
     );
   }
 }
+
