@@ -10,11 +10,13 @@ class User {
   String firstName;
   String lastName;
   String gender;
+  String userProfileUrl;
 
   User(
       {@required this.id,
       @required this.emailId,
       this.firstName,
+      this.userProfileUrl = "",
       this.lastName,
       this.gender});
 
@@ -25,6 +27,7 @@ class User {
     firstName = map["firstName"];
     lastName = map["lastName"];
     gender = map["gender"];
+    userProfileUrl = map["userProfileUrl"];
   }
 
   /// Update user from map
@@ -34,6 +37,7 @@ class User {
     firstName = map["firstName"];
     lastName = map["lastName"];
     gender = map["gender"];
+    userProfileUrl = map["userProfileUrl"];
   }
 
   Map<String, dynamic> toMap() {
@@ -43,6 +47,7 @@ class User {
     map["firstName"] = firstName;
     map["lastName"] = lastName;
     map["gender"] = gender;
+    map["userProfileUrl"] = userProfileUrl;
     return map;
   }
 }

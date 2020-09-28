@@ -3,8 +3,10 @@ import 'package:everest/Services/Firebase/User.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:everest/Services/Firebase/firestore_service.dart';
 import 'package:everest/Utilities/ScreenUtility.dart';
+import 'package:everest/Views/dashboard_drawer.dart';
 import 'package:everest/Views/home_page.dart';
 import 'package:everest/Views/post_status_page.dart';
+import 'package:everest/Views/profile_page.dart';
 import 'package:everest/Views/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,7 @@ class _DashboardState extends State<Dashboard> {
   List<Widget> _pageOptions = <Widget>[
     HomePage(),
     PostStatusPage(),
-    SettingPage()
+    ProfilePage(),
   ];
 
   void _onBottomNavPageTapped(int index) {
@@ -41,18 +43,20 @@ class _DashboardState extends State<Dashboard> {
       theme: _appConfig.appTheme.getThemeData(context),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: PreferredSize(
-            preferredSize:
-                Size.fromHeight(ScreenUtility.getScreenHeight(context) * 0.08),
-            child: AppBar(
-              title: Text(
-                "Dashboard",
-                style: TextStyle(
-                    fontFamily: _appConfig.fontFamily,
-                    fontSize: ScreenUtility.getStandardSize8(context) * 2),
-              ),
-              elevation: 8,
+          appBar: AppBar(
+            actions: [
+            IconButton(icon: Icon(Icons.settings), onPressed: () {
+              var authService = Provider.of<FirebaseAuthService>(context,listen: false);
+              authService.signOut();
+            }),
+            ],
+            title: Text(
+              "StatusQ",
+              style: TextStyle(
+                  fontFamily: _appConfig.fontFamily,
+                  fontSize: ScreenUtility.getStandardSize8(context) * 2),
             ),
+            elevation: 8,
           ),
           bottomNavigationBar: SizedBox(
             height: ScreenUtility.getScreenHeight(context) * 0.072,
@@ -70,7 +74,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 BottomNavigationBarItem(
                   title: Container(height: 0),
-                  icon: Icon(Icons.settings,
+                  icon: Icon(Icons.account_circle,
                       size: MediaQuery.of(context).size.height * 0.045),
                 ),
               ],

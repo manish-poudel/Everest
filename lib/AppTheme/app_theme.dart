@@ -26,7 +26,7 @@ class AppTheme {
 
   _initLightTheme() {
     primarySwatch = Colors.blue;
-    primaryColor = Color(0xFF06446C);
+    primaryColor = Color(0xFF0868a6);
     backgroundColor = Color(0xffF1F5FB);
     indicatorColor = Color(0xffCBDCF8);
     buttonColor = Color(0xffF1F5FB);
