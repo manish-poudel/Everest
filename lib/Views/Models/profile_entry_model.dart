@@ -1,5 +1,5 @@
 import 'package:everest/Resources/regex.dart';
-import 'package:everest/Services/Firebase/User.dart';
+import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Services/Firebase/firestore_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -9,16 +9,15 @@ import 'package:provider/provider.dart';
 /// @createdAt 9/26/2020
 
 class ProfileEntryModel {
-
   BuildContext context;
 
   ProfileEntryModel({@required this.context});
 
   /// Save user profile
-  Future<void> saveProfile(User user)
-  {
-    FirestoreService  firestoreService = Provider.of<FirestoreService>(context,listen: false);
-   return  firestoreService.saveUser(user);
+  Future<void> saveProfile(User user) {
+    FirestoreService firestoreService =
+        Provider.of<FirestoreService>(context, listen: false);
+    return firestoreService.saveUser(user);
   }
 
   /// Validation for first name text field
@@ -47,5 +46,4 @@ class ProfileEntryModel {
     }
     return null;
   }
-
 }

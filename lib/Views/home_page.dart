@@ -13,10 +13,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Container(
-        child: Text("Post"),
-      )
-    );
+        child: Container(
+      child: Text("Post"),
+    ));
   }
 }
-

@@ -15,4 +15,3 @@ class _PostStatusPageState extends State<PostStatusPage> {
     return Container();
   }
 }
-

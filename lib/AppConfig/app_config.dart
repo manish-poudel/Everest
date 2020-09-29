@@ -1,4 +1,4 @@
-import 'package:everest/AppConfig/Flavor.dart';
+import 'package:everest/AppConfig/flavor.dart';
 import 'package:everest/AppTheme/app_theme.dart';
 import 'package:flutter/foundation.dart';
 

@@ -1,5 +1,5 @@
-import 'package:everest/AppConfig/AppConfig.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
+import 'package:everest/AppConfig/app_config.dart';
+import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Widgets/Models/simple_textbox_model.dart';
 import 'package:everest/Widgets/rounded_flat_buttons.dart';
 import 'package:everest/Widgets/simple_textbox.dart';
@@ -15,11 +15,11 @@ class RegistrationWidget extends StatefulWidget {
   final String Function(String) emailValidator;
   final String Function(String, String) passwordValidator;
 
-  RegistrationWidget(
-      {@required this.onRegister,
-      this.emailValidator,
-      this.passwordValidator,
-      });
+  RegistrationWidget({
+    @required this.onRegister,
+    this.emailValidator,
+    this.passwordValidator,
+  });
 
   @override
   _RegistrationWidgetState createState() => _RegistrationWidgetState();
@@ -104,20 +104,20 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
           ),
           Padding(
             padding: EdgeInsets.only(top: _standardPadding),
-            child: ChangeNotifierProvider<SimpleTextBoxModel>(
-                create: (context) => _emailTextBoxModel,
+            child: ChangeNotifierProvider.value(
+                value: _emailTextBoxModel,
                 child: SimpleTextBoxWidget()),
           ),
           Padding(
             padding: EdgeInsets.only(top: _standardPadding),
-            child: ChangeNotifierProvider<SimpleTextBoxModel>(
-                create: (context) => _passwordTextBoxModel,
+            child: ChangeNotifierProvider.value(
+                value: _passwordTextBoxModel,
                 child: SimpleTextBoxWidget()),
           ),
           Padding(
             padding: EdgeInsets.only(top: _standardPadding),
-            child: ChangeNotifierProvider<SimpleTextBoxModel>(
-                create: (context) => _passwordAgainTextBoxModel,
+            child: ChangeNotifierProvider.value(
+                value: _passwordAgainTextBoxModel,
                 child: SimpleTextBoxWidget()),
           ),
           Padding(

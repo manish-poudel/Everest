@@ -1,4 +1,4 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Widgets/auth_widget.dart';
 import 'package:everest/Widgets/auth_widget_builder.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +8,12 @@ import 'package:provider/provider.dart';
 class StatusQApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    AppConfig appConfig = Provider.of<AppConfig>(context, listen:false);
+    AppConfig appConfig = Provider.of<AppConfig>(context, listen: false);
     return AuthWidgetBuilder(builder: (context, userSnapshot) {
       return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: appConfig.appTheme.getThemeData(context),
-          home: AuthWidget(userSnapshot: userSnapshot)
-      );
+          home: AuthWidget(userSnapshot: userSnapshot));
     });
   }
 }

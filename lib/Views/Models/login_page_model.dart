@@ -10,13 +10,14 @@ class LoginPageModel {
   FirebaseAuthService firebaseAuthService;
 
   LoginPageModel(context) {
-    firebaseAuthService = Provider.of<FirebaseAuthService>(context, listen: false);
+    firebaseAuthService =
+        Provider.of<FirebaseAuthService>(context, listen: false);
   }
 
   /// On login button pressed
   /// @param email and password
-  Future signInWithEmailAndPassword(String email, String password)  {
-   return  firebaseAuthService.signInWithEmailAndPassword(email, password);
+  Future signInWithEmailAndPassword(String email, String password) {
+    return firebaseAuthService.signInWithEmailAndPassword(email, password);
   }
 
   /// Validation for email text field
@@ -32,7 +33,6 @@ class LoginPageModel {
     return null;
   }
 
-
   /// Validation for email text field
   /// @param value sent by text field
   /// @returns String for validation error msg or null
@@ -40,20 +40,16 @@ class LoginPageModel {
     if (value.isEmpty) {
       return 'Please enter your password';
     }
-    if(value.length < 6)
-      {
-        return 'Please enter a password with at least 6 characters';
-      }
+    if (value.length < 6) {
+      return 'Please enter a password with at least 6 characters';
+    }
     return null;
   }
 
-
   /// Get readable login error string based on error code
   /// @param error code
-  String getReadableLoginErrMsg(String errorCode)
-  {
-    switch(errorCode)
-    {
+  String getReadableLoginErrMsg(String errorCode) {
+    switch (errorCode) {
       case "user-not-found":
         return "We are unable to find that user. Please try again.";
         break;

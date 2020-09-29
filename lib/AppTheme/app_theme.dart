@@ -20,7 +20,7 @@ class AppTheme {
   Brightness brightness;
   ColorScheme colorScheme;
 
-  AppTheme({@required this.type}){
+  AppTheme({@required this.type}) {
     _initTheme();
   }
 

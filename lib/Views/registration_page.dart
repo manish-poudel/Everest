@@ -1,7 +1,7 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Resources/custom_icons.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
-import 'package:everest/Utilities/ViewUtility.dart';
+import 'package:everest/Utilities/screen_utility.dart';
+import 'package:everest/Utilities/view_utility.dart';
 import 'package:everest/Views/Models/registration_page_model.dart';
 import 'package:everest/Views/login_page.dart';
 import 'package:everest/Widgets/alert_dialogbox.dart';
@@ -34,13 +34,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   /// On register clicked
   _onRegisterClicked(String email, String password) {
-    ProgressInfo progressInfo = ProgressInfo(context: context, content: "Please wait..");
+    ProgressInfo progressInfo =
+        ProgressInfo(context: context, content: "Please wait..");
     progressInfo.show();
     _registrationPageModel
         .registerWithEmailAndPassword(email, password)
         .then((value) => progressInfo.dismiss())
         .catchError((err) {
-          progressInfo.dismiss();
+      progressInfo.dismiss();
       _handleLoginError(err.code);
     });
   }
@@ -80,8 +81,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     children: [
                       AppLogo(),
                       FlatButton(
-                        onPressed: () =>
-                            ViewUtility.cupertinoPushReplacement(context, LoginPage()),
+                        onPressed: () => ViewUtility.cupertinoPushReplacement(
+                            context, LoginPage()),
                         child: Text(
                           "Sign in",
                           style: TextStyle(
