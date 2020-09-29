@@ -1,4 +1,4 @@
-import 'package:everest/Services/Firebase/User.dart';
+import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Services/Firebase/firestore_service.dart';
 import 'package:everest/Views/dashboard.dart';
 import 'package:everest/Views/profile_entry_page.dart';
@@ -14,7 +14,7 @@ class SplashScreen extends StatelessWidget {
     return StreamBuilder<User>(
       stream: firestoreService.userStream(),
       builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.active) {
+        if (snapshot.connectionState == ConnectionState.active) {
           final User user = snapshot.data;
           if (user != null) {
             return MultiProvider(

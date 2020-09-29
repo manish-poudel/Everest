@@ -1,5 +1,5 @@
 import 'package:everest/Resources/app_image_resources.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
+import 'package:everest/Utilities/screen_utility.dart';
 import 'package:flutter/material.dart';
 
 /// App logo

@@ -1,5 +1,5 @@
 import 'package:everest/AppConfig/AppConfig.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
+import 'package:everest/Utilities/screen_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,12 +7,11 @@ import 'package:provider/provider.dart';
 /// @author Manish Poudel
 /// @createdAt 9/27/2020
 
-class ProgressInfo{
+class ProgressInfo {
   BuildContext context;
   BuildContext dbContext;
   String content;
-  ProgressInfo(
-      {@required this.context, this.content});
+  ProgressInfo({@required this.context, this.content});
 
   /// Show dialog box
   show() {
@@ -27,7 +26,8 @@ class ProgressInfo{
             children: [
               CircularProgressIndicator(),
               Padding(
-                padding: EdgeInsets.only(left:ScreenUtility.getStandardPadding(context)),
+                padding: EdgeInsets.only(
+                    left: ScreenUtility.getStandardPadding(context)),
                 child: Text(content,
                     style: TextStyle(
                         fontSize: ScreenUtility.getStandardSize8(context) * 2,
@@ -41,8 +41,7 @@ class ProgressInfo{
   }
 
   /// Dismiss dialog box
-  dismiss()
-  {
+  dismiss() {
     Navigator.pop(dbContext);
   }
 }

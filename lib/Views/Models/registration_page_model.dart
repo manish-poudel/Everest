@@ -11,12 +11,13 @@ class RegistrationPageModel {
   FirebaseAuthService firebaseAuthService;
 
   RegistrationPageModel(context) {
-    firebaseAuthService = Provider.of<FirebaseAuthService>(context, listen: false);
+    firebaseAuthService =
+        Provider.of<FirebaseAuthService>(context, listen: false);
   }
 
   /// Register user with email and password
   /// @param email and password
-  Future registerWithEmailAndPassword(String email, String password)  {
+  Future registerWithEmailAndPassword(String email, String password) {
     return firebaseAuthService.registerWithEmailAndPassword(email, password);
   }
 
@@ -33,7 +34,6 @@ class RegistrationPageModel {
     return null;
   }
 
-
   /// Validation for email text field
   /// @param value sent by text field
   /// @returns String for validation error msg or null
@@ -41,25 +41,20 @@ class RegistrationPageModel {
     if (value.isEmpty) {
       return 'Please enter your password';
     }
-    if(value.length < 6)
-    {
+    if (value.length < 6) {
       return 'Please enter a password with at least 6 characters';
     }
-    if(value != value2)
-      {
-        return "Password didn't match";
-      }
+    if (value != value2) {
+      return "Password didn't match";
+    }
     return null;
   }
 
-
   /// Get readable login error string based on error code
   /// @param error code
-  String getReadableLoginErrMsg(String errorCode)
-  {
+  String getReadableLoginErrMsg(String errorCode) {
     print(errorCode);
-    switch(errorCode)
-    {
+    switch (errorCode) {
       case "email-already-in-use":
         return "Sorry! Email id already exists. Please try again with different email id.";
         break;

@@ -21,11 +21,8 @@ Future<void> main() async {
             apiBasePath: "",
             flavor: Flavor.dev),
       ),
-      Provider<FirebaseAuthService>(
-          create: (_) => FirebaseAuthService()),
+      Provider<FirebaseAuthService>(create: (_) => FirebaseAuthService()),
     ],
     child: StatusQApp(),
   ));
 }
-
-

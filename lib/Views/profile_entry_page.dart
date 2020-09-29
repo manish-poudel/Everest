@@ -1,8 +1,8 @@
 import 'package:everest/AppConfig/AppConfig.dart';
-import 'package:everest/Services/Firebase/User.dart';
+import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
-import 'package:everest/Utilities/ViewUtility.dart';
+import 'package:everest/Utilities/screen_utility.dart';
+import 'package:everest/Utilities/view_utility.dart';
 import 'package:everest/Views/Models/profile_entry_model.dart';
 import 'package:everest/Widgets/alert_dialogbox.dart';
 import 'package:everest/Widgets/app_logo.dart';
@@ -39,7 +39,8 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
   /// On profile saved call
   /// @param first name, last name, and gender of the user
   _onProfileSave(firstName, lastName, gender) {
-    ProgressInfo progressInfo = ProgressInfo(context: context, content: "Saving your profile...");
+    ProgressInfo progressInfo =
+        ProgressInfo(context: context, content: "Saving your profile...");
     progressInfo.show();
     User user = User(
         id: _user.uid,
@@ -95,7 +96,12 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
                 Padding(
                   padding: EdgeInsets.only(top: _standardPadding),
                   child: FlatButton(
-                    child: Text("Sign out",style: TextStyle(fontFamily: _appConfig.fontFamily,  fontSize: ScreenUtility.getStandardSize8(context) * 2,decoration:TextDecoration.underline)),
+                    child: Text("Sign out",
+                        style: TextStyle(
+                            fontFamily: _appConfig.fontFamily,
+                            fontSize:
+                                ScreenUtility.getStandardSize8(context) * 2,
+                            decoration: TextDecoration.underline)),
                     onPressed: () {
                       _authService.signOut();
                     },

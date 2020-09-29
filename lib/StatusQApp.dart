@@ -8,13 +8,12 @@ import 'package:provider/provider.dart';
 class StatusQApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    AppConfig appConfig = Provider.of<AppConfig>(context, listen:false);
+    AppConfig appConfig = Provider.of<AppConfig>(context, listen: false);
     return AuthWidgetBuilder(builder: (context, userSnapshot) {
       return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: appConfig.appTheme.getThemeData(context),
-          home: AuthWidget(userSnapshot: userSnapshot)
-      );
+          home: AuthWidget(userSnapshot: userSnapshot));
     });
   }
 }

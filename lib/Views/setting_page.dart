@@ -11,11 +11,10 @@ class SettingPage extends StatefulWidget {
   _SettingPageState createState() => _SettingPageState();
 }
 
-
 class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
-    var authService = Provider.of<FirebaseAuthService>(context,listen: false);
+    var authService = Provider.of<FirebaseAuthService>(context, listen: false);
     return Container(
       child: Center(
         child: FlatButton(

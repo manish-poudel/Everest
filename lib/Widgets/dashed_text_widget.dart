@@ -1,5 +1,5 @@
 import 'package:everest/AppConfig/AppConfig.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
+import 'package:everest/Utilities/screen_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -24,4 +24,3 @@ class AuthWidget extends StatelessWidget {
     );
   }
 }
-

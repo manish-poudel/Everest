@@ -1,5 +1,5 @@
 import 'package:everest/AppConfig/AppConfig.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
+import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Widgets/Models/simple_textbox_model.dart';
 import 'package:everest/Widgets/rounded_flat_buttons.dart';
 import 'package:everest/Widgets/simple_textbox.dart';
@@ -87,7 +87,10 @@ class _ProfileEntryWidgetState extends State<ProfileEntryWidget> {
                     child: Padding(
                       padding: EdgeInsets.only(left: _standardPadding),
                       child: new Text(value,
-                          style: TextStyle(fontFamily: _appConfig.fontFamily, fontSize: ScreenUtility.getStandardSize8(context) * 2)),
+                          style: TextStyle(
+                              fontFamily: _appConfig.fontFamily,
+                              fontSize:
+                                  ScreenUtility.getStandardSize8(context) * 2)),
                     ),
                   );
                 }).toList(),

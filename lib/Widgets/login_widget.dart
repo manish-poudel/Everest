@@ -1,5 +1,5 @@
 import 'package:everest/AppConfig/AppConfig.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
+import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Widgets/Models/simple_textbox_model.dart';
 import 'package:everest/Widgets/simple_textbox.dart';
 import 'package:flutter/material.dart';
@@ -72,14 +72,14 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
           Padding(
             padding: EdgeInsets.only(top: _standardPadding * 2),
-            child: ChangeNotifierProvider<SimpleTextBoxModel>(
-                create: (context) => _emailTextBoxModel,
+            child: ChangeNotifierProvider.value(
+                value: _emailTextBoxModel,
                 child: SimpleTextBoxWidget()),
           ),
           Padding(
             padding: EdgeInsets.only(top: _standardPadding),
-            child: ChangeNotifierProvider<SimpleTextBoxModel>(
-                create: (context) => _passwordTextBoxModel,
+            child: ChangeNotifierProvider.value(
+                value: _passwordTextBoxModel,
                 child: SimpleTextBoxWidget()),
           ),
           Padding(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 
 /// Simple textbox model
@@ -12,18 +11,16 @@ class SimpleTextBoxModel extends ChangeNotifier {
   Function onSuffixIconButtonPressed;
   Function validator;
 
-  SimpleTextBoxModel({this.obscureText,
-    @required this.hintText,
-    this.validator,
-    this.suffixIcon,
-    this.onSuffixIconButtonPressed
-  });
+  SimpleTextBoxModel(
+      {this.obscureText,
+      @required this.hintText,
+      this.validator,
+      this.suffixIcon,
+      this.onSuffixIconButtonPressed});
 
   /// On suffix icon button clicked
-  onSuffixIconButtonClicked()
-  {
+  onSuffixIconButtonClicked() {
     Function.apply(onSuffixIconButtonPressed, []);
     notifyListeners();
   }
-
 }

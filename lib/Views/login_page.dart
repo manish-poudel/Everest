@@ -1,7 +1,7 @@
 import 'package:everest/AppConfig/AppConfig.dart';
 import 'package:everest/Resources/custom_icons.dart';
-import 'package:everest/Utilities/ScreenUtility.dart';
-import 'package:everest/Utilities/ViewUtility.dart';
+import 'package:everest/Utilities/screen_utility.dart';
+import 'package:everest/Utilities/view_utility.dart';
 import 'package:everest/Views/Models/login_page_model.dart';
 import 'package:everest/Views/registration_page.dart';
 import 'package:everest/Widgets/alert_dialogbox.dart';
@@ -35,13 +35,14 @@ class _LoginPageState extends State<LoginPage> {
   /// On sign with email and password after sign in button is clicked. We try to authenticate user using firebase auth.
   /// @param email and password which we get from text field of login widget
   _onSignInWithEmailAndPassword(email, password) {
-    ProgressInfo progressInfo = ProgressInfo(context: context, content: "Signing in");
+    ProgressInfo progressInfo =
+        ProgressInfo(context: context, content: "Signing in");
     progressInfo.show();
     _loginPageModel
         .signInWithEmailAndPassword(email, password)
         .then((value) => progressInfo.dismiss())
         .catchError((err) {
-          progressInfo.dismiss();
+      progressInfo.dismiss();
       _handleLoginError(err.code);
     });
   }
@@ -56,7 +57,8 @@ class _LoginPageState extends State<LoginPage> {
 
   /// On password forgot button clicked
   _onPasswordForgot() {
-    ProgressInfo progressInfo = ProgressInfo(context: context, content: "Login in");
+    ProgressInfo progressInfo =
+        ProgressInfo(context: context, content: "Login in");
     progressInfo.show();
   }
 

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:everest/Services/Firebase/User.dart';
+import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Services/Firebase/firestore_path_resources.dart';
 import 'package:flutter/cupertino.dart';
 
