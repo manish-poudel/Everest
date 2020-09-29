@@ -1,4 +1,4 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Resources/app_image_resources.dart';
 import 'package:everest/Resources/app_string_resources.dart';
 import 'package:everest/Resources/custom_icons.dart';

@@ -1,4 +1,4 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:everest/Utilities/screen_utility.dart';

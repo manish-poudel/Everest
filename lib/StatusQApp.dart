@@ -1,4 +1,4 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Widgets/auth_widget.dart';
 import 'package:everest/Widgets/auth_widget_builder.dart';
 import 'package:flutter/material.dart';

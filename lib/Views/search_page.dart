@@ -1,4 +1,4 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Widgets/Models/search_box_model.dart';
 import 'package:everest/Widgets/search_box.dart';

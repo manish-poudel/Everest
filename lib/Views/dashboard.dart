@@ -1,4 +1,4 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Utilities/view_utility.dart';
 import 'package:everest/Views/home_page.dart';

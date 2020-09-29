@@ -1,4 +1,4 @@
-import 'package:everest/AppConfig/AppConfig.dart';
+import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Utilities/screen_utility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

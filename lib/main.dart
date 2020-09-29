@@ -1,5 +1,5 @@
-import 'package:everest/AppConfig/AppConfig.dart';
-import 'package:everest/AppConfig/Flavor.dart';
+import 'package:everest/AppConfig/app_config.dart';
+import 'package:everest/AppConfig/flavor.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'AppTheme/app_theme.dart';
