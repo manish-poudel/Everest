@@ -35,10 +35,10 @@ class _SearchBoxState extends State<SearchBox> {
               onChanged: (text) =>  searchBoxModel.onTextChange(text),
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Look for people',
+                  hintText: 'Search by username, name or email id',
                   hintStyle: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtility.getStandardSize8(context) * 2,
+                      fontSize: ScreenUtility.getStandardSize8(context) * 1.5,
                       fontFamily: appConfig.fontFamily)),
             ),
           ),

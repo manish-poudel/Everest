@@ -11,12 +11,12 @@ import 'package:provider/provider.dart';
 /// @createdAt 9/26/2020
 class ProfileEntryWidget extends StatefulWidget {
   final String Function(String) firstNameValidator;
-  final String Function(String) lastNameValidator;
+  final String Function(String) usernameValidator;
   final Function onProfileSave;
 
   ProfileEntryWidget(
       {@required this.firstNameValidator,
-      @required this.lastNameValidator,
+      @required this.usernameValidator,
       @required this.onProfileSave});
 
   @override
@@ -37,9 +37,9 @@ class _ProfileEntryWidgetState extends State<ProfileEntryWidget> {
     _standardPadding = ScreenUtility.getStandardPadding(context);
     _appConfig = Provider.of<AppConfig>(context, listen: false);
     _firstNameTextBoxModel = SimpleTextBoxModel(
-        hintText: "First name", validator: widget.firstNameValidator);
+        hintText: "Name", validator: widget.firstNameValidator);
     _lastNameTextBoxModel = SimpleTextBoxModel(
-        hintText: "Last name", validator: widget.lastNameValidator);
+        hintText: "Username", validator: widget.usernameValidator);
   }
 
   @override

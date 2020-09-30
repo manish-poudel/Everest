@@ -38,15 +38,31 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
 
   /// On profile saved call
   /// @param first name, last name, and gender of the user
-  _onProfileSave(firstName, lastName, gender) {
+  _onProfileSave(name, username, gender) async {
     ProgressInfo progressInfo =
         ProgressInfo(context: context, content: "Saving your profile...");
     progressInfo.show();
+    if(await _profileEntryModel.usernameExists(username))
+      {
+        progressInfo.dismiss();
+        DialogBox(
+            context: context,
+            heading: "Profile setup failure",
+            content: "Username already exists")
+            .show();
+        return;
+      }
     User user = User(
         id: _user.uid,
         emailId: _user.email,
-        firstName: firstName,
-        lastName: lastName,
+        name: name,
+        username: username,
+        profileCreatedAt: DateTime.now(),
+        lastUpdated: {
+          "username": DateTime.now(),
+          "name": DateTime.now(),
+        },
+        userProfileUrl: "",
         gender: gender);
     _profileEntryModel.saveProfile(user).then((value) {
       progressInfo.dismiss();
@@ -90,7 +106,7 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
                       top: _standardPadding * 3),
                   child: ProfileEntryWidget(
                       firstNameValidator: _profileEntryModel.firstNameValidator,
-                      lastNameValidator: _profileEntryModel.lastNameValidator,
+                      usernameValidator: _profileEntryModel.usernameValidator,
                       onProfileSave: _onProfileSave),
                 ),
                 Padding(
