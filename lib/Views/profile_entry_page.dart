@@ -62,7 +62,7 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
           "username": DateTime.now(),
           "name": DateTime.now(),
         },
-        userProfileUrl: "",
+        profileImageUrl: "",
         gender: gender);
     _profileEntryModel.saveProfile(user).then((value) {
       progressInfo.dismiss();

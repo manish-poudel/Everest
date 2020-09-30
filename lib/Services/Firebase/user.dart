@@ -10,7 +10,7 @@ class User {
   String name;
   String username;
   String gender;
-  String userProfileUrl;
+  String profileImageUrl;
   DateTime profileCreatedAt;
   Map<String, dynamic> lastUpdated;
 
@@ -20,7 +20,7 @@ class User {
       @required this.profileCreatedAt,
       @required this.lastUpdated,
       @required this.name,
-      @required this.userProfileUrl,
+      @required this.profileImageUrl,
       @required this.username,
       @required this.gender});
 
@@ -32,7 +32,7 @@ class User {
     name = map["name"];
     username = map["username"];
     gender = map["gender"];
-    userProfileUrl = map["profileImageUrl"];
+    profileImageUrl = map["profileImageUrl"];
     profileCreatedAt = map["profileCreatedAt"].toDate();
     lastUpdated = {
       "username" : map["lastUpdated"]["username"].toDate(),
@@ -47,7 +47,7 @@ class User {
     map["name"] = name;
     map["username"] = username;
     map["gender"] = gender;
-    map["profileImageUrl"] = userProfileUrl;
+    map["profileImageUrl"] = profileImageUrl;
     map["profileCreatedAt"] = profileCreatedAt;
     map["lastUpdated"] = lastUpdated;
     return map;

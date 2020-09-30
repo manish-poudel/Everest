@@ -3,7 +3,7 @@ import 'package:everest/Services/Firebase/Firestore/firestore_user_service.dart'
 import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Utilities/view_utility.dart';
 import 'package:everest/Views/home_page.dart';
-import 'package:everest/Views/post_status_page.dart';
+import 'package:everest/Views/post_entry_page.dart';
 import 'package:everest/Views/profile_page.dart';
 import 'package:everest/Views/search_page.dart';
 import 'package:everest/Views/setting_page.dart';
@@ -25,7 +25,7 @@ class _DashboardState extends State<Dashboard> {
   List<Widget> _pageOptions = <Widget>[
     HomePage(),
     SearchPage(),
-    PostStatusPage(),
+    PostEntryPage(),
     SettingPage(),
     ProfilePage(),
   ];
@@ -43,6 +43,10 @@ class _DashboardState extends State<Dashboard> {
       ViewUtility.materialPush(context, _pageOptions[index]);
       return;
     }
+    if (index == 2) {
+      ViewUtility.materialPush(context, _pageOptions[index]);
+      return;
+    }
     setState(() {
       _selectedIndex = index;
     });
@@ -56,6 +60,7 @@ class _DashboardState extends State<Dashboard> {
       theme: _appConfig.appTheme.getThemeData(context),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+          backgroundColor: Colors.white,
           appBar: PreferredSize(
             preferredSize:
                 Size.fromHeight(ScreenUtility.getScreenHeight(context) * 0.08),
@@ -122,8 +127,10 @@ class _DashboardState extends State<Dashboard> {
               onTap: _onBottomNavPageTapped,
             ),
           ),
-          body: Center(
-            child: _pageOptions.elementAt(_selectedIndex),
+          body: SingleChildScrollView(
+            child: Center(
+              child: _pageOptions.elementAt(_selectedIndex),
+            ),
           )),
     );
   }
