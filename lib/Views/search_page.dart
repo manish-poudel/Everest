@@ -1,4 +1,5 @@
 import 'package:everest/AppConfig/app_config.dart';
+import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Widgets/Models/search_box_model.dart';
 import 'package:everest/Widgets/search_box.dart';
@@ -34,6 +35,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     _appConfig = Provider.of<AppConfig>(context, listen: false);
+    var user = Provider.of<User>(context);
     _appConfig.appTheme.setStatusBarTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,

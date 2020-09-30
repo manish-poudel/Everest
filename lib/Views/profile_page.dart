@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-    user.userProfileUrl == null || user.userProfileUrl.isEmpty
+    user.profileImageUrl == null || user.profileImageUrl.isEmpty
             ? Icon(Icons.account_circle,
                 color: Colors.grey[300],
                 size: ScreenUtility.getScreenHeight(context) * 0.2)

@@ -18,7 +18,6 @@ class SplashScreen extends StatelessWidget {
           final User user = snapshot.data;
           print("rUN");
           if (user != null) {
-
             return MultiProvider(
               providers: [
                 Provider<User>.value(value: user),
