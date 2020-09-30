@@ -1,5 +1,5 @@
+import 'package:everest/Services/Firebase/Firestore/firestore_user_service.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
-import 'package:everest/Services/Firebase/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,8 +23,8 @@ class AuthWidgetBuilder extends StatelessWidget {
           return MultiProvider(
             providers: [
               Provider<User>.value(value: user),
-              Provider<FirestoreService>(
-                  create: (_) => FirestoreService(uid: user.uid)),
+              Provider<FirestoreUserService>(
+                  create: (_) => FirestoreUserService(uid: user.uid)),
             ],
             child: builder(context, snapshot),
           );

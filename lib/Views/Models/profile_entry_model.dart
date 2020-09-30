@@ -1,6 +1,6 @@
 import 'package:everest/Resources/regex.dart';
+import 'package:everest/Services/Firebase/Firestore/firestore_user_service.dart';
 import 'package:everest/Services/Firebase/user.dart';
-import 'package:everest/Services/Firebase/firestore_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
@@ -15,9 +15,16 @@ class ProfileEntryModel {
 
   /// Save user profile
   Future<void> saveProfile(User user) {
-    FirestoreService firestoreService =
-        Provider.of<FirestoreService>(context, listen: false);
+    FirestoreUserService firestoreService =
+        Provider.of<FirestoreUserService>(context, listen: false);
     return firestoreService.saveUser(user);
+  }
+
+  Future<bool> usernameExists(username)
+  async {
+    FirestoreUserService firestoreService =
+    Provider.of<FirestoreUserService>(context, listen: false);
+    return await firestoreService.checkIfUserNameExists(username);
   }
 
   /// Validation for first name text field
@@ -26,10 +33,10 @@ class ProfileEntryModel {
   String firstNameValidator(value) {
     print(value);
     if (value.isEmpty) {
-      return 'Please enter your first name properly';
+      return 'Please enter your name properly';
     }
     if (RegExp(RegexValidator.name).hasMatch(value)) {
-      return "Please enter valid first name";
+      return "Please enter your name properly";
     }
     return null;
   }
@@ -37,13 +44,14 @@ class ProfileEntryModel {
   /// Validation for last name text field
   /// @param value sent by text field
   /// @returns String for validation error msg or null
-  String lastNameValidator(value) {
+  String usernameValidator(value) {
     if (value.isEmpty) {
-      return 'Please enter your last name properly';
+      return 'Please enter your username properly';
     }
-    if (RegExp(RegexValidator.name).hasMatch(value)) {
-      return "Please enter valid last name";
+    if (!RegExp(RegexValidator.username).hasMatch(value)) {
+      return "Allowed only \n- lowercase letters \n- numbers \n- underscore \n- and should be in range between 5-30.";
     }
+
     return null;
   }
 }
