@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
   /// @returns Widget containing profile info
   Widget _buildUserInfo({BuildContext context}) {
     final user = Provider.of<User>(context, listen: true);
-    FirestoreUserService(uid: user.id).userSearchStream("Man");
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

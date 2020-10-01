@@ -1,4 +1,6 @@
 import 'package:everest/AppConfig/app_config.dart';
+import 'package:everest/Services/Firebase/Cloud%20Functions/cloud_subdirectory_resources.dart';
+import 'package:everest/Services/Firebase/Cloud%20Functions/firebase_cloud_function_service.dart';
 import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Widgets/Models/search_box_model.dart';
@@ -19,6 +21,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   AppConfig _appConfig;
   SearchBoxModel _searchBoxModel;
+  FirebaseCloudFunctionService cloudService;
 
   @override
   void initState() {
@@ -28,14 +31,19 @@ class _SearchPageState extends State<SearchPage> {
 @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+     cloudService = Provider.of<FirebaseCloudFunctionService>(context, listen: false);
     _searchBoxModel = SearchBoxModel(context: context);
   }
 
+  search()
+  async {
+     await cloudService.get(subDirectory: APISubDirectory.searchAllUser("ash", "",""));
+  }
 
   @override
   Widget build(BuildContext context) {
+    search();
     _appConfig = Provider.of<AppConfig>(context, listen: false);
-    var user = Provider.of<User>(context);
     _appConfig.appTheme.setStatusBarTheme();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -54,6 +62,4 @@ class _SearchPageState extends State<SearchPage> {
       ),
     );
   }
-
-
 }

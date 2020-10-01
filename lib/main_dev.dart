@@ -18,7 +18,7 @@ Future<void> main() async {
         create: (_) => AppConfig(
             fontFamily: 'Montserrat',
             appTheme: AppTheme(type: AppThemeType.light),
-            apiBasePath: "",
+            apiBasePath: "https://us-central1-statusq-development.cloudfunctions.net/",
             flavor: Flavor.dev),
       ),
       Provider<FirebaseAuthService>(create: (_) => FirebaseAuthService()),

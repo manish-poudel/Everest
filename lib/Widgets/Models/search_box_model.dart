@@ -9,6 +9,7 @@ class SearchBoxModel extends ChangeNotifier {
   final _debouncer = Debouncer(milliSeconds: 500);
   final BuildContext context;
 
+
   SearchBoxModel({@required this.context});
   /// Calls every time text is changed in text box
   /// @param text received from widget
