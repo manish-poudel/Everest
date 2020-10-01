@@ -1,3 +1,5 @@
+import 'package:everest/AppConfig/app_config.dart';
+import 'package:everest/Services/Firebase/Cloud%20Functions/firebase_cloud_function_service.dart';
 import 'package:everest/Services/Firebase/Firestore/firestore_user_service.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,18 +15,20 @@ class AuthWidgetBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authService =
-        Provider.of<FirebaseAuthService>(context, listen: false);
+    final authService = Provider.of<FirebaseAuthService>(context, listen: false);
     return StreamBuilder<User>(
       stream: authService.onAuthStateChanged,
       builder: (context, snapshot) {
         final User user = snapshot.data;
         if (user != null) {
+          var appConfig = Provider.of<AppConfig>(context, listen: false);
           return MultiProvider(
             providers: [
               Provider<User>.value(value: user),
               Provider<FirestoreUserService>(
                   create: (_) => FirestoreUserService(uid: user.uid)),
+              Provider<FirebaseCloudFunctionService>(
+                  create: (_) => FirebaseCloudFunctionService(basePath: appConfig.apiBasePath)),
             ],
             child: builder(context, snapshot),
           );

@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:everest/Resources/regex.dart';
-import 'package:everest/Resources/regex.dart';
 import 'package:everest/Services/Firebase/Firestore/firestore_path_resources.dart';
 import 'package:everest/Services/Firebase/user.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,45 +41,6 @@ class FirestoreUserService {
     final reference = FirebaseFirestore.instance.doc(path);
     final snapshots = reference.snapshots();
     return snapshots.map((snapshot) => User.fromMap(snapshot.data()));
-  }
-
-  /// Get user search stream
-  /// @param name
-   userSearchStream(String name)
-   {
-
-     name ="manish@gmail.com";
-  if (RegExp(RegexValidator.email).hasMatch(name)) {
-    final reference = FirebaseFirestore.instance.collection(FirestorePath.userCollection)
-        .where("emailId", isEqualTo: name).get().then((value){
-      print("Data");
-      value.docChanges.forEach((element){
-        print(element.doc.data().toString());
-      });
-    });
-    return;
-  }
-
-    String firstLetter=  name.substring(0,1);
-    print(firstLetter);
-        print("Top");
-        final reference = FirebaseFirestore.instance.collection(FirestorePath.userCollection)
-            .where("username", isLessThanOrEqualTo: name)
-            .get().then((value){
-          print("Data");
-          value.docChanges.forEach((element){
-            print(element.doc.data().toString());
-          });
-        });
-
-  final REF = FirebaseFirestore.instance.collection(FirestorePath.userCollection)
-      .where("username", isGreaterThanOrEqualTo: name)
-      .get().then((value){
-    print("Data2");
-    value.docChanges.forEach((element){
-      print(element.doc.data().toString());
-    });
-  });
   }
 
 }

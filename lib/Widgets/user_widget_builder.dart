@@ -19,15 +19,14 @@ class UserWidgetBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     if(authSnapshot.connectionState == ConnectionState.active) {
       if(authSnapshot.hasData) {
-        FirestoreUserService firestoreService = Provider.of<
-            FirestoreUserService>(
-            context);
+        FirestoreUserService firestoreService = Provider.of<FirestoreUserService>(context);
         return StreamBuilder<User>(
           stream: firestoreService.userStream(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               final User user = snapshot.data;
               if (user != null) {
+                print("Calling ........");
                 return MultiProvider(
                   providers: [
                     Provider<User>.value(value: user),
