@@ -4,4 +4,5 @@
 class FirestorePath {
   static String userCollection = 'users';
   static String userProfile(String uid) => 'users/$uid';
+
 }

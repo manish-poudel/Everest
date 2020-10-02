@@ -16,10 +16,11 @@ class FirebaseCloudFunctionService {
   /// @returns map responses
    get(
       {@required String subDirectory}) async {
+    print(_basePath + subDirectory);
     var response = await http.get(_basePath + subDirectory);
     if (response.statusCode == 200) {
       var jsonResponse =  convert.jsonDecode(response.body);
-      print("Response" + jsonResponse.toString());
+     return jsonResponse;
     }
   }
 }

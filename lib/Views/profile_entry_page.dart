@@ -78,6 +78,7 @@ class _ProfileEntryPageState extends State<ProfileEntryPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("asdsd");
     _user = Provider.of<firebase_auth.User>(context, listen: false);
     _authService = Provider.of<FirebaseAuthService>(context, listen: false);
     _standardPadding = ScreenUtility.getStandardPadding(context);

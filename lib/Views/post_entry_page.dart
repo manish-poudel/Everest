@@ -19,6 +19,7 @@ class _PostEntryPageState extends State<PostEntryPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("Post");
     _appConfig = Provider.of<AppConfig>(context, listen: false);
     _appConfig.appTheme.setStatusBarTheme();
     return MaterialApp(

@@ -43,4 +43,53 @@ class FirestoreUserService {
     return snapshots.map((snapshot) => User.fromMap(snapshot.data()));
   }
 
+  /// Search user by username
+  searchUser({@required String text, int limit = 5, @required String searchBy, String searchAfter})
+  async {
+    Map<String,User> userMap = Map();
+   Query query;
+    if(searchAfter == null)
+      {
+        query = FirebaseFirestore.instance.collection(FirestorePath.userCollection).orderBy(searchBy)
+            .where(searchBy, isGreaterThanOrEqualTo: text.toLowerCase()).limit(limit);
+     }
+    else{
+      query = FirebaseFirestore.instance.collection(FirestorePath.userCollection).orderBy(searchBy)
+          .where(searchBy, isGreaterThanOrEqualTo: text.toLowerCase()).startAfter([searchAfter]).limit(limit);
+    }
+    QuerySnapshot querySnapshot =  await query.get();
+    querySnapshot.docs.forEach((element) {
+      User user = User.fromMap(element.data());
+      userMap.putIfAbsent(user.id, () => user);
+    });
+    return userMap;
+  }
+
+  createDummyTestUser()
+  async {
+    var name = ['Alex Bird', 'Aaliyah Cat', 'Aaraon Dog', 'Angelina Dog', 'Alex Pig', 'Ava Fire', 'Andrew Walla', 'Anthony Gonzales', 'Ariana Grande','Andrew Zicka',
+                'Brooke Smith' , 'Bobby Neupane','Bella Cat', 'Ben ten', 'Bethany Mori' , 'Beatrice Moora'
+      ];
+    var username = ['alex11', 'aaliyah_11', 'angisawesome', 'alex234', 'ava123', 'andrewfire_11', 'anthony','ariana', 'andrew'
+      ,'brooke_2100', 'bobby_11' ,'bella_1222', 'ben_is_what', 'bethanyisgood' ,'beatrices' ,'baook'
+    ];
+
+    for(int i = 0 ; i < name.length; i++ )
+      {
+        String id = FirebaseFirestore.instance.collection('users').doc().id;
+        await FirebaseFirestore.instance.collection('users').doc(id).set(User(
+          id:id,
+          name: name[i],
+          username: username[i],
+          profileImageUrl: "",
+          profileCreatedAt: DateTime.now(),
+          gender: 'Male',
+          emailId: 'josh@gmail.com',
+          lastUpdated: {
+            'username': DateTime.now(),
+            'name':DateTime.now()
+          }
+        ).toMap());
+      }
+  }
 }

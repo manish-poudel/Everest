@@ -53,6 +53,7 @@ flutter:
     - assets/images/app_logo.png
     - assets/images/intro_page_illustration.png
     - assets/images/user_placeholder.png
+    - assets/images/empty_placeholder.png
 
   fonts:
     - family: Google

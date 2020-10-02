@@ -26,7 +26,6 @@ class User {
 
   /// Create user object from map
   User.fromMap(Map<String, dynamic> map) {
-    print(map.toString());
     id = map["id"];
     emailId = map["emailId"];
     name = map["name"];
