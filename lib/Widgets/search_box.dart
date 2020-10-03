@@ -41,7 +41,11 @@ class _SearchBoxState extends State<SearchBox> {
                 child: Padding(
                   padding: EdgeInsets.only(
                       left: ScreenUtility.getStandardPadding(context) * 2),
-                  child: TextField(
+                  child: TextFormField(
+                    style:TextStyle(
+                        color: Colors.black,
+                        fontSize: ScreenUtility.getStandardSize8(context) * 2,
+                        fontFamily: appConfig.fontFamily),
                     controller: searchBoxModel.textEditingController,
                     autofocus: true,
                     onChanged: (text) =>  searchBoxModel.onTextChange(text),

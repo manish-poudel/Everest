@@ -154,11 +154,11 @@ class _SearchPageState extends State<SearchPage> {
                       Text(
                         users[index].username,
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: Colors.black, fontSize: ScreenUtility.getStandardSize8(context) * 2,fontWeight: FontWeight.bold),
                       ),
                       Text(
                         users[index].name,
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.grey, fontSize: ScreenUtility.getStandardSize8(context) * 1.6),
                       ),
                     ],
                   ),
