@@ -65,6 +65,17 @@ class FirestoreUserService {
     return userMap;
   }
 
+  searchUserByEmail(email)
+  async {
+    Map<String,User> userMap = Map();
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('users').where('emailId', isEqualTo: email).get();;
+    querySnapshot.docs.forEach((element) {
+      User user = User.fromMap(element.data());
+      userMap.putIfAbsent(user.id, () => user);
+    });
+    return userMap;
+  }
+
   createDummyTestUser()
   async {
     var name = ['Alex Bird', 'Aaliyah Cat', 'Aaraon Dog', 'Angelina Dog', 'Alex Pig', 'Ava Fire', 'Andrew Walla', 'Anthony Gonzales', 'Ariana Grande','Andrew Zicka',

@@ -51,8 +51,7 @@ class _SearchPageState extends State<SearchPage> {
         return FutureBuilder<List<User>>(
           future: _searchPageModel.searchUser(
               searchBoxModel.searchText,
-              _searchBoxFilterModel.filterUsernameActive,
-              _searchBoxFilterModel.filterNameActive),
+              _searchBoxFilterModel.searchByUsername),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Padding(
@@ -107,14 +106,13 @@ class _SearchPageState extends State<SearchPage> {
                           Material(
                               color: Colors.white,
                               elevation: 2,
-                              child: Column(
-                                children: [
-                                  SearchBox(),
-                                  ChangeNotifierProvider.value(
-                                      value: _searchBoxFilterModel,
-                                      child: SearchBoxFilter()),
-                                ],
-                              )),
+                              child: SearchBox()),
+                          Padding(
+                            padding: EdgeInsets.only(top:ScreenUtility.getStandardSize8(context)),
+                            child: ChangeNotifierProvider.value(
+                                value: _searchBoxFilterModel,
+                                child: SearchBoxFilter()),
+                          ),
                           consumer
                         ],
                       )),

@@ -7,23 +7,15 @@ import 'package:provider/provider.dart';
 /// @author Manish Poudel
 /// @createdAt 9/25/2020
 class SearchBoxFilterModel extends ChangeNotifier {
-  bool filterUsernameActive = false;
-  bool filterNameActive = false;
+  bool searchByUsername = true;
   SearchBoxModel _searchBoxModel;
 
   SearchBoxFilterModel(this._searchBoxModel);
 
-  onFilterUsernameChanged()
+  onSearchByChanged()
   {
-    filterUsernameActive = !filterUsernameActive;
-    _searchBoxModel.notifyOnChangeInFilter();
-    notifyListeners();
-  }
-
-  onFilterNameChanged()
-  {
-    filterNameActive = !filterNameActive;
-    _searchBoxModel.notifyOnChangeInFilter();
+   searchByUsername = !searchByUsername;
+   _searchBoxModel.notifyOnChangeInFilter();
     notifyListeners();
   }
 }

@@ -8,4 +8,5 @@ class ImageResources {
       _basePath + "user_placeholder.png";
   static const String introPageIllustrationPath =
       _basePath + "intro_page_illustration.png";
+  static const String emptyPlaceholderImg = _basePath + "empty_placeholder.png";
 }
