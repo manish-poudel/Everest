@@ -2,7 +2,6 @@ import 'package:everest/Widgets/Models/Post/post_activity_entry_model.dart';
 import 'package:everest/Widgets/Models/Post/post_entry_model.dart';
 import 'package:everest/Widgets/Models/Post/post_entry_view_enum.dart';
 import 'package:everest/Widgets/Models/Post/post_image_and_note_entry_model.dart';
-import 'package:everest/Widgets/Models/multiline_textbox_model.dart';
 import 'package:everest/Widgets/Post/post_activity_entry_widget.dart';
 import 'package:everest/Widgets/Post/post_image_and_note_entry_widget.dart';
 import 'package:everest/Widgets/Post/post_status_entry_widget.dart';
@@ -10,6 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PostEntryMainWidget extends StatefulWidget {
+
+  final BuildContext parentContext;
+
+  PostEntryMainWidget(this.parentContext);
+
   @override
   _PostEntryMainWidgetState createState() => _PostEntryMainWidgetState();
 }
@@ -21,7 +25,7 @@ class _PostEntryMainWidgetState extends State<PostEntryMainWidget> {
   @override
   void initState() {
     super.initState();
-    _postImageAndNoteEntryModel = PostImageAndNoteEntryModel();
+    _postImageAndNoteEntryModel = PostImageAndNoteEntryModel(widget.parentContext);
     _postActivityEntryModel = PostActivityEntryModel();
 
   }

@@ -42,7 +42,7 @@ class _MultiLineTextBoxState extends State<MultiLineTextBox> {
                 filled: true,
                 hintStyle: new TextStyle(color: Colors.grey),
                 hintText: multiLineTextBoxModel.hintText,
-                fillColor: Colors.white70),
+                fillColor: Colors.white),
           );
         },
       ),
