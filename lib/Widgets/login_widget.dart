@@ -84,7 +84,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: _standardPadding, bottom: _standardPadding),
+                top: _standardPadding * 2, bottom: _standardPadding * 2),
             child: FlatButton(
               padding: EdgeInsets.all(0),
               onPressed: () => Function.apply(widget.onPasswordForgot, []),
