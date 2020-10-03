@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 class PostEntryMainModel extends ChangeNotifier{
 
   PostEntryView postEntryView = PostEntryView.activity;
+  BuildContext context;
+  PostEntryMainModel(this.context);
 
   /// Go to next view
   changeView(PostEntryView postEntryView)

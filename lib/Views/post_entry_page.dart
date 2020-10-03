@@ -27,7 +27,7 @@ class _PostEntryPageState extends State<PostEntryPage> {
   void initState() {
     super.initState();
     _postSecurityOptionModel = PostSecurityOptionModel();
-    _postEntryMainModel = PostEntryMainModel();
+    _postEntryMainModel = PostEntryMainModel(context);
   }
 
   @override
@@ -67,6 +67,20 @@ class _PostEntryPageState extends State<PostEntryPage> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            right:
+                                ScreenUtility.getStandardPadding(context) * 2),
+                        child: Text(
+                          "Share",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: _appConfig.fontFamily,
+                              fontWeight: FontWeight.w700,
+                              fontSize:
+                                  ScreenUtility.getStandardSize8(context) * 2),
                         ),
                       ),
                     ],
@@ -109,9 +123,18 @@ class _PostEntryPageState extends State<PostEntryPage> {
                         value: _postEntryMainModel,
                         child: Column(
                           children: [
-                            PostEntryMainWidget(),
                             Padding(
-                              padding:  EdgeInsets.only(top:ScreenUtility.getStandardPadding(context) * 3),
+                              padding: EdgeInsets.only(
+                                  top: ScreenUtility.getStandardPadding(
+                                          context) *
+                                      4),
+                              child: PostEntryMainWidget(context),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: ScreenUtility.getStandardPadding(
+                                          context) *
+                                      2),
                               child: Consumer<PostEntryMainModel>(
                                   builder: (context, model, child) {
                                 return getPostButtons(model);
@@ -131,29 +154,24 @@ class _PostEntryPageState extends State<PostEntryPage> {
   Widget getPostButtons(model) {
     if (model.postEntryView == PostEntryView.activity) {
       return Align(
-        alignment: Alignment.bottomRight,
+        alignment: Alignment.centerRight,
         child: FlatButton(
           onPressed: () => model.changeView(PostEntryView.imageAndNote),
-          child:
-              Text("NEXT", style: TextStyle(fontFamily: _appConfig.fontFamily)),
+          child: Text("ADD NOTE",
+              style: TextStyle(
+                  fontSize: ScreenUtility.getStandardSize8(context) * 1.6,
+                  color: Colors.blueGrey,
+                  fontFamily: _appConfig.fontFamily)),
         ),
       );
     }
     if (model.postEntryView == PostEntryView.imageAndNote) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FlatButton(
-            onPressed: () => model.changeView(PostEntryView.activity),
-            child: Text("BACK",
-                style: TextStyle(fontFamily: _appConfig.fontFamily)),
-          ),
-          FlatButton(
-            onPressed: () => model.changeView(PostEntryView.changeStatus),
-            child: Text("NEXT",
-                style: TextStyle(fontFamily: _appConfig.fontFamily)),
-          ),
-        ],
+      return Align(
+        alignment: Alignment.center,
+        child: IconButton(
+          onPressed: () => model.changeView(PostEntryView.activity),
+          icon:Icon(Icons.arrow_back, size: ScreenUtility.getScreenWidth(context) * 0.04)
+        ),
       );
     }
     if (model.postEntryView == PostEntryView.changeStatus) {
