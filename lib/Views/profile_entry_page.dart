@@ -2,7 +2,6 @@ import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Services/Firebase/firebase_auth_service.dart';
 import 'package:everest/Utilities/screen_utility.dart';
-import 'package:everest/Utilities/view_utility.dart';
 import 'package:everest/Views/Models/profile_entry_model.dart';
 import 'package:everest/Widgets/alert_dialogbox.dart';
 import 'package:everest/Widgets/app_logo.dart';
@@ -12,7 +11,6 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'dashboard.dart';
 
 /// Page for profile entry
 ///@author Manish Poudel

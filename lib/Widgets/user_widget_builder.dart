@@ -1,7 +1,5 @@
 import 'package:everest/Services/Firebase/Firestore/firestore_user_service.dart';
 import 'package:everest/Services/Firebase/user.dart';
-import 'package:everest/Views/intro_page.dart';
-import 'package:everest/Widgets/app_logo.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 
 import 'package:flutter/material.dart';

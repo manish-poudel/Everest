@@ -1,8 +1,6 @@
 import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Utilities/screen_utility.dart';
-import 'package:everest/Widgets/Models/search_box_filter_model.dart';
 import 'package:everest/Widgets/Models/search_box_model.dart';
-import 'package:everest/Widgets/search_box_filter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -1,7 +1,5 @@
-import 'package:everest/Services/Application/debouncer.dart';
 import 'package:everest/Widgets/Models/search_box_model.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 
 /// Simple textbox model
 /// @author Manish Poudel

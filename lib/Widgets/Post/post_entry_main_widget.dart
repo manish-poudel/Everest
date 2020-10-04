@@ -1,7 +1,5 @@
-import 'package:everest/Widgets/Models/Post/post_activity_entry_model.dart';
 import 'package:everest/Widgets/Models/Post/post_entry_model.dart';
 import 'package:everest/Widgets/Models/Post/post_entry_view_enum.dart';
-import 'package:everest/Widgets/Models/Post/post_image_and_note_entry_model.dart';
 import 'package:everest/Widgets/Post/post_activity_entry_widget.dart';
 import 'package:everest/Widgets/Post/post_image_and_note_entry_widget.dart';
 import 'package:everest/Widgets/Post/post_status_entry_widget.dart';
@@ -10,9 +8,8 @@ import 'package:provider/provider.dart';
 
 class PostEntryMainWidget extends StatefulWidget {
 
-  final BuildContext parentContext;
 
-  PostEntryMainWidget(this.parentContext);
+  PostEntryMainWidget();
 
   @override
   _PostEntryMainWidgetState createState() => _PostEntryMainWidgetState();
@@ -20,26 +17,22 @@ class PostEntryMainWidget extends StatefulWidget {
 
 class _PostEntryMainWidgetState extends State<PostEntryMainWidget> {
 
-  PostImageAndNoteEntryModel _postImageAndNoteEntryModel;
-  PostActivityEntryModel _postActivityEntryModel;
   @override
   void initState() {
     super.initState();
-    _postImageAndNoteEntryModel = PostImageAndNoteEntryModel(widget.parentContext);
-    _postActivityEntryModel = PostActivityEntryModel();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PostEntryMainModel>(builder: (context, model, child) {
       if (model.postEntryView == PostEntryView.activity) {
-        return  ChangeNotifierProvider.value(value: _postActivityEntryModel,
+        return  ChangeNotifierProvider.value(value: model.postActivityEntryModel,
           child: PostActivityEntryWidget(),
         );
       }
 
       if (model.postEntryView == PostEntryView.imageAndNote) {
-        return ChangeNotifierProvider.value(value: _postImageAndNoteEntryModel,
+        return ChangeNotifierProvider.value(value: model.postImageAndNoteEntryModel,
           child: PostImageAndNoteEntryWidget(),
         );
       }
