@@ -69,19 +69,52 @@ class _PostEntryPageState extends State<PostEntryPage> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            right:
-                                ScreenUtility.getStandardPadding(context) * 2),
-                        child: Text(
-                          "Share",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: _appConfig.fontFamily,
-                              fontWeight: FontWeight.w700,
-                              fontSize:
-                                  ScreenUtility.getStandardSize8(context) * 2),
-                        ),
+                      Row(
+                        children: [
+                          ChangeNotifierProvider.value(
+                              value: _postEntryMainModel,
+                              child: Container(
+                                child: Consumer<PostEntryMainModel>(
+                                  builder: (context, model, child) {
+                                    return Visibility(
+                                        visible: model.postEntryView ==
+                                            PostEntryView.imageAndNote,
+                                        child: FlatButton(
+                                          child: Text(
+                                            "Back",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily:
+                                                    _appConfig.fontFamily,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: ScreenUtility
+                                                        .getStandardSize8(
+                                                            context) *
+                                                    2),
+                                          ),
+                                          onPressed: () => model.changeView(
+                                              PostEntryView.activity),
+                                        ));
+                                  },
+                                ),
+                              )),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                right:
+                                    ScreenUtility.getStandardPadding(context) *
+                                        2),
+                            child: Text(
+                              "Share",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: _appConfig.fontFamily,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize:
+                                      ScreenUtility.getStandardSize8(context) *
+                                          2),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   )),
@@ -128,7 +161,7 @@ class _PostEntryPageState extends State<PostEntryPage> {
                                   top: ScreenUtility.getStandardPadding(
                                           context) *
                                       4),
-                              child: PostEntryMainWidget(context),
+                              child: PostEntryMainWidget(),
                             ),
                             Padding(
                               padding: EdgeInsets.only(
@@ -137,7 +170,7 @@ class _PostEntryPageState extends State<PostEntryPage> {
                                       2),
                               child: Consumer<PostEntryMainModel>(
                                   builder: (context, model, child) {
-                                return getPostButtons(model);
+                                return getAddNoteButtons();
                               }),
                             )
                           ],
@@ -151,45 +184,39 @@ class _PostEntryPageState extends State<PostEntryPage> {
   }
 
   /// Get buttons
-  Widget getPostButtons(model) {
-    if (model.postEntryView == PostEntryView.activity) {
+  Widget getAddNoteButtons() {
+    if (_postEntryMainModel.postEntryView == PostEntryView.activity) {
       return Align(
-        alignment: Alignment.centerRight,
-        child: FlatButton(
-          onPressed: () => model.changeView(PostEntryView.imageAndNote),
-          child: Text("ADD NOTE",
-              style: TextStyle(
-                  fontSize: ScreenUtility.getStandardSize8(context) * 1.6,
-                  color: Colors.blueGrey,
-                  fontFamily: _appConfig.fontFamily)),
-        ),
-      );
-    }
-    if (model.postEntryView == PostEntryView.imageAndNote) {
-      return Align(
-        alignment: Alignment.center,
-        child: IconButton(
-          onPressed: () => model.changeView(PostEntryView.activity),
-          icon:Icon(Icons.arrow_back, size: ScreenUtility.getScreenWidth(context) * 0.04)
-        ),
-      );
-    }
-    if (model.postEntryView == PostEntryView.changeStatus) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FlatButton(
-            onPressed: () => model.changeView(PostEntryView.imageAndNote),
-            child: Text("BACK",
-                style: TextStyle(fontFamily: _appConfig.fontFamily)),
-          ),
-          FlatButton(
-            onPressed: () => null,
-            child: Text("POST",
-                style: TextStyle(fontFamily: _appConfig.fontFamily)),
-          ),
-        ],
-      );
+          alignment: Alignment.centerRight,
+          child: (_postEntryMainModel
+                      .postImageAndNoteEntryModel
+                      .multiLineTextBoxModel
+                      .textEditingController
+                      .text
+                      .isEmpty &&
+                  _postEntryMainModel.postImageAndNoteEntryModel.image == null)
+              ? FlatButton(
+                  onPressed: () => _postEntryMainModel
+                      .changeView(PostEntryView.imageAndNote),
+                  child: Text("ADD NOTE",
+                      style: TextStyle(
+                          fontSize:
+                              ScreenUtility.getStandardSize8(context) * 1.6,
+                          color: Colors.blueGrey,
+                          fontFamily: _appConfig.fontFamily)),
+                )
+              : FlatButton.icon(
+                  onPressed: () => _postEntryMainModel
+                      .changeView(PostEntryView.imageAndNote),
+                  icon: Icon(Icons.check,
+                      color: Colors.blueGrey,
+                      size: ScreenUtility.getScreenWidth(context) * 0.04),
+                  label: Text("EDIT NOTE",
+                      style: TextStyle(
+                          fontSize:
+                              ScreenUtility.getStandardSize8(context) * 1.6,
+                          color: Colors.blueGrey,
+                          fontFamily: _appConfig.fontFamily))));
     }
     return Container(height: 0, width: 0);
   }

@@ -1,6 +1,5 @@
 import 'package:everest/AppConfig/app_config.dart';
 import 'package:everest/Resources/app_image_resources.dart';
-import 'package:everest/Services/Firebase/Firestore/firestore_user_service.dart';
 import 'package:everest/Services/Firebase/user.dart';
 import 'package:everest/Utilities/screen_utility.dart';
 import 'package:flutter/material.dart';

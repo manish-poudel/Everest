@@ -1,13 +1,9 @@
-import 'dart:async';
-import 'dart:io';
 
 import 'package:everest/AppConfig/app_config.dart';
-import 'package:everest/Resources/app_image_resources.dart';
 import 'package:everest/Utilities/screen_utility.dart';
 import 'package:everest/Utilities/view_utility.dart';
 import 'package:everest/Views/image_viewer.dart';
 import 'package:everest/Widgets/Models/Post/post_image_and_note_entry_model.dart';
-import 'package:everest/Widgets/Models/multiline_textbox_model.dart';
 import 'package:everest/Widgets/multiline_textbox.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -65,6 +61,9 @@ class _PostImageAndNoteEntryWidgetState
                 )
               ],
             ),
+            ChangeNotifierProvider.value(
+                value: model.multiLineTextBoxModel, child: Container(
+                child: MultiLineTextBox())),
             model.image != null
                 ? Stack(
                     alignment: Alignment.topRight,
@@ -103,10 +102,7 @@ class _PostImageAndNoteEntryWidgetState
                     ],
                   )
                 : Container(height: 0, width: 0),
-            ChangeNotifierProvider.value(
-                value: model.multiLineTextBoxModel, child: Container(
-                height: ScreenUtility.getScreenHeight(context) * 0.5,
-                child: MultiLineTextBox())),
+
           ],
         ),
       );
